@@ -1,0 +1,147 @@
+/* mainView */
+.mainViewPage ::placeholder {
+  color: #999999;
+}
+.mainViewPage .titleCSS {
+  display: flex;
+  justify-content: end;
+  margin-top: 0.3rem;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+/* Light */
+.sidebarLight {
+  box-shadow: 3px 0 3px 0px #cccccc;
+  background-color: #f8f9fa;
+}
+.contentTypeLight {
+  background-color: #e5e5e5;
+}
+.contentTypeLight .fontCSS {
+  color: #04104a;
+  font-size: 20px;
+}
+.contentTypeLight .fontColor {
+  color: #04104a;
+}
+.contentTypeLight .page-link {
+  color: #04104a;
+}
+.contentTypeLight .page-item.disabled .page-link {
+  color: #04104a;
+  background-color: #f8f9fa;
+}
+.contentTypeLight .page-item.active .page-link {
+  color: #ffffff;
+  background-color: #04104a;
+  border-color: #04104a;
+}
+.contentTypeLight .b-calendar-grid-body .btn-outline-primary:hover {
+  background-color: #04104a;
+  color: #ffffff;
+}
+
+/* Dark */
+.sidebarDark {
+  box-shadow: 3px 0 3px 0px #212529;
+  background-color: #343a40;
+}
+.contentTypeDark {
+  background-color: #343a40;
+}
+.contentTypeDark .fontCSS {
+  color: white;
+  font-size: 20px;
+}
+.contentTypeDark .fontColor {
+  color: white;
+}
+.contentTypeDark .page-link {
+  color: #ffffff;
+  background-color: #343a40;
+  border-color: #343a40;
+}
+.contentTypeDark .page-item.disabled .page-link {
+  color: #ffffff;
+  background-color: #343a40;
+  border-color: #343a40;
+}
+.contentTypeDark .page-item.active .page-link {
+  color: #ffffff;
+  background-color: #04104a;
+  border-color: #04104a;
+}
+.contentTypeDark .custom-control-label {
+  color: #ffffff;
+}
+.contentTypeDark .b-calendar-header .form-control {
+  background-color: #343a40;
+  color: #ffffff;
+}
+.contentTypeDark .b-calendar-grid {
+  background-color: #343a40;
+  color: #ffffff;
+}
+.contentTypeDark .b-calendar-grid .text-dark {
+  color: #ffffff !important;
+}
+.contentTypeDark .b-calendar-grid-body .btn-outline-primary:hover {
+  background-color: #fff;
+  color: #04104a !important;
+}
+.contentTypeDark .b-calendar-grid-body .btn-outline-light:hover {
+  color: #04104a !important;
+}
+.contentTypeDark .b-form-datepicker label {
+  color: #ffffff !important;
+}
+
+/* radio */
+.custom-control-input:checked ~ .custom-control-label::before {
+  border-color: #04104a;
+  background-color: #04104a;
+}
+/* calendar */
+.b-calendar-grid .active {
+  background-color: #04104a !important;
+}
+.b-calendar-grid .b-calendar-grid-help {
+  display: none;
+}
+.b-form-datepicker {
+  margin: 0 !important;
+}
+
+/* RWD */
+.mainContent {
+  width: 90%;
+  margin: 0 auto;
+}
+@media screen and (max-width: 1200px) {
+  .mainContent {
+    width: 85%;
+  }
+}
+/* 212529
+343a40 */
+/* secondary #6c757d */
+/* .contentTypeDark {
+  color: white;
+} */
+/* .form-check-input  */
+
+/* .form-check input[type="radio"] {
+  display: none;
+}
+.form-check input[type="radio"] + label {
+  display: inline-block;
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.form-check input[type="radio"]:checked + label {
+  background-color: #007bff; ß
+  color: #fff; 
+} */
