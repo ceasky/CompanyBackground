@@ -12,7 +12,8 @@
         <button
           v-show="windowWidth > 992"
           type="button"
-          class="btn my-2 my-sm-0"
+          class="btn"
+          style="background-color: transparent; border-color: transparent"
           @click="setSidebarType()"
         >
           <span class="navbar-toggler-icon"></span>
@@ -57,7 +58,8 @@
         <div>
           <button
             type="button"
-            class="btn btn-lg my-2 my-sm-0"
+            class="btn my-2 my-sm-0"
+            style="background-color: transparent; border-color: transparent"
             @click="showuseroption()"
           >
             <i
@@ -65,6 +67,7 @@
                 backgroundColor == 'dark' ? 'fontColorDark' : 'fontColorLight'
               "
               class="fa-solid fa-user"
+              style="font-size: 20px"
             ></i>
           </button>
         </div>

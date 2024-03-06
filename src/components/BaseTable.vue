@@ -22,7 +22,7 @@
               <b-button
                 style="margin-right: 0.5rem"
                 v-show="data.item[data.field.key].includes('edit')"
-                class="btn-icon btn-primary hover-info detail-button"
+                class="btn-icon"
                 variant="secondary"
                 @click="EditAction(data)"
               >
@@ -30,7 +30,7 @@
               </b-button>
               <b-button
                 v-show="data.item[data.field.key].includes('delete')"
-                class="btn-icon btn-primary hover-info detail-button"
+                class="btn-icon  hover-info detail-button"
                 variant="danger"
                 @click="DeleteAction(data)"
               >

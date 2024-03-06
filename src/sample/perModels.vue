@@ -112,10 +112,54 @@
             </b-col>
           </b-row>
         </b-col>
+
+        <b-col class="col-12">
+          <b-button @click="createAction()" variant="primary">Button</b-button>
+          <b-button disabled variant="outline-primary">outline</b-button>
+          <b-button disabled variant="outline-secondary">outline</b-button>
+        </b-col>
       </b-row>
 
       <BaseTable class="mt-3" :fields="table.fields" :items="table.items" />
     </div>
+    <b-modal
+      id="CompanyMaintain"
+      :title="modalData.modalType == 'create' ? '新增公司' : '修改公司'"
+      hide-header-close
+      :headerBgVariant="backgroundColor"
+      :headerTextVariant="backgroundColor == 'dark' ? 'light' : 'dark'"
+      :bodyBgVariant="backgroundColor"
+      :bodyTextVariant="backgroundColor == 'dark' ? 'light' : 'dark'"
+      :footerBgVariant="backgroundColor"
+      :footerTextVariant="backgroundColor == 'dark' ? 'light' : 'dark'"
+      centered
+      size="lg"
+    >
+      <div>
+        <b-row class="align-items-center">
+          <b-col lg="2" class="modalTitleCSS col-3">
+            <label style="font-size: 20px;"> 公司名稱： </label>
+          </b-col>
+          <b-col>
+            <b-form-input
+              :name="this.$route.name + '1'"
+              v-model="modalData.companyName"
+              placeholder="請輸入公司名稱"
+              type="text"
+            />
+          </b-col>
+        </b-row>
+      </div>
+
+      <template #modal-footer="{ cancel }">
+        <b-row>
+          <b-button class="mr-2" variant="primary">確定</b-button>
+          <b-button variant="outline-secondary" @click="cancel">
+            返回
+          </b-button>
+        </b-row>
+      </template>
+    </b-modal>
   </div>
 </template>
 <script>
@@ -127,6 +171,10 @@ export default {
   },
   data() {
     return {
+      modalData: {
+        modalType: "create",
+        companyName: "",
+      },
       sampleRadio: {
         name: "sampleRadio",
         value: "0",
@@ -222,7 +270,12 @@ export default {
       },
     };
   },
-  methods: {},
+  methods: {
+    createAction() {
+      this.modalData.modalType = "create";
+      this.$bvModal.show("CompanyMaintain");
+    },
+  },
   computed: {
     ...mapState(["backgroundColor"]),
   },
