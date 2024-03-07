@@ -105,7 +105,6 @@ router.beforeEach(async (to, from, next) => {
   let isAuthenticated = store.state.isAuthenticated;
 
   if (tokenInLocalStorage && tokenInLocalStorage !== tokenInStore) {
-    console.log("000");
     isAuthenticated = await store.dispatch("fetchCurrentUser");
   }
   // 對於不需要驗證 token 的頁面

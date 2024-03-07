@@ -258,14 +258,20 @@ h1,
   margin: 0 !important;
 }
 
-.modalTitleCSS{
+/* modal */
+.modal-content .modalTitleCSS {
   display: flex;
   justify-content: end;
   margin-top: 0.5rem;
   padding: 0;
 }
 
+.modal-content ::placeholder {
+  color: #999999;
+}
+.tableFieldPadding {
 
+}
 
 /* RWD */
 .mainContent {

@@ -26,7 +26,6 @@ export default new Vuex.Store({
       };
       state.token = localStorage.getItem("token");
       state.isAuthenticated = true;
-      console.log("state.currentUser", state.currentUser);
     },
     setSidebarType(state, type) {
       if (type == "100") {

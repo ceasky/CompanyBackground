@@ -1,40 +1,73 @@
 <template>
-      <!-- style="width: 80%; margin: 0 auto" -->
+  <!-- style="width: 80%; margin: 0 auto" -->
   <div>
-    <b-card
-      :class="backgroundColor == 'dark' ? 'bg-secondary' : 'bg-light'"
-    >
+    <b-card :class="backgroundColor == 'dark' ? 'bg-secondary' : 'bg-light'">
       <b-table
+        responsive="true"
+        sticky-header="true"
         head-variant="light"
         style="margin: 0"
         :fields="fields"
         :items="items"
-        responsive="sm"
         :dark="backgroundColor == 'dark'"
       >
         <template #cell()="data">
-          <!-- button -->
+          <!-- text_btn -->
           <b-row
             class="d-flex justify-content-center"
-            v-if="data.field?.type == 'button'"
+            v-if="data.field?.type == 'text_btn'"
           >
-            <div>
+            <div class="d-flex flex-gap">
               <b-button
-                style="margin-right: 0.5rem"
+                v-for="(item, index) in data.item[data.field.key]"
+                :key="index"
+                class="btn-icon"
+                :variant="item.variant"
+                @click="text_btnFunction(data.field.key, data.index, index)"
+              >
+                <!-- <i>edit</i> -->
+                <i>{{ item.text }}</i>
+              </b-button>
+            </div>
+          </b-row>
+          <!-- icon_btn -->
+          <b-row
+            class="d-flex justify-content-center"
+            v-else-if="data.field?.type == 'icon_btn'"
+          >
+            <div class="d-flex flex-gap">
+              <b-button
+                v-for="(item, index) in data.item[data.field.key]"
+                :key="index"
+                class="btn-icon"
+                :variant="item.variant"
+                @click="icon_btnFunction(data.field.key, data.index, index)"
+              >
+                <b-icon :icon="item.icon"></b-icon>
+              </b-button>
+            </div>
+          </b-row>
+          <!-- default_btn -->
+          <b-row
+            class="d-flex justify-content-center"
+            v-else-if="data.field?.type == 'default_btn'"
+          >
+            <div class="d-flex flex-gap">
+              <b-button
                 v-show="data.item[data.field.key].includes('edit')"
                 class="btn-icon"
                 variant="secondary"
-                @click="EditAction(data)"
+                @click="editAction(data.field.key, data.index)"
               >
-                <i class="fa-regular fa-pen-to-square"></i>
+                <b-icon icon="pencil-square"></b-icon>
               </b-button>
               <b-button
                 v-show="data.item[data.field.key].includes('delete')"
-                class="btn-icon  hover-info detail-button"
+                class="btn-icon hover-info detail-button"
                 variant="danger"
-                @click="DeleteAction(data)"
+                @click="deleteAction(data.field.key, data.index)"
               >
-                <i class="fa-solid fa-trash"></i>
+                <b-icon icon="trash"></b-icon>
               </b-button>
             </div>
           </b-row>
@@ -42,7 +75,7 @@
           <b-row
             style="height: 2.5rem"
             v-else
-            class="d-flex justify-content-center align-items-center"
+            class="d-flex justify-content-center align-items-center text-nowrap"
           >
             <div>{{ data.value }}</div>
           </b-row>
@@ -52,7 +85,7 @@
       <div class="mt-3 d-flex justify-content-end">
         <b-pagination
           v-model="currentPage"
-          :total-rows="rows"
+          :total-rows="totalItems"
           :per-page="perPage"
           first-number
           last-number
@@ -68,9 +101,7 @@ import { mapState } from "vuex";
 export default {
   data() {
     return {
-      perPage: 3,
       currentPage: 1,
-      totalItems: 100,
     };
   },
   props: {
@@ -78,17 +109,37 @@ export default {
       type: Array,
       required: true,
     },
-    //表格項目
     items: {
       type: Array,
       required: true,
     },
-    //button action
-    EditAction: {
+    totalItems: {
+      type: Number,
+    },
+    perPage: {
+      type: Number,
+    },
+    //icon_btn Function
+    icon_btnFunction: {
       type: Function,
       default: null,
     },
-    DeleteAction: {
+    //text_btn Function
+    text_btnFunction: {
+      type: Function,
+      default: null,
+    },
+    //default_btn
+    editAction: {
+      type: Function,
+      default: null,
+    },
+    deleteAction: {
+      type: Function,
+      default: null,
+    },
+
+    clickPage: {
       type: Function,
       default: null,
     },
@@ -96,8 +147,10 @@ export default {
   methods: {},
   computed: {
     ...mapState(["backgroundColor"]),
-    rows() {
-      return this.totalItems;
+  },
+  watch: {
+    currentPage() {
+      this.clickPage(this.currentPage);
     },
   },
 };
@@ -105,5 +158,11 @@ export default {
 <style scoped>
 .pagination {
   margin: 0;
+}
+.flex-gap > * {
+  margin-right: 0.2rem;
+}
+.flex-gap > *:last-child {
+  margin-right: 0;
 }
 </style>
