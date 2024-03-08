@@ -1,128 +1,154 @@
 <template>
   <div>
     <div class="mainContent">
-      <b-row class="mb-3">
-        <!-- input sample -->
-        <b-col md="6">
-          <b-row>
-            <b-col xl="3" md="4" class="col-2 titleCSS">
-              <label class="fontCSS" :for="$route.name + '1'">Input： </label>
-            </b-col>
-            <b-col>
-              <b-form-input
-                :id="$route.name + '1'"
-                :name="$route.name + '1'"
-                placeholder="Enter the value"
-                v-model="inputValue"
-                :class="
-                  backgroundColor == 'dark' ? 'text-light bg-secondary' : ''
-                "
-                trim
-              />
-            </b-col>
-          </b-row>
-        </b-col>
-        <!-- select sample -->
-        <b-col md="6">
-          <b-row>
-            <b-col xl="3" md="4" class="col-2 titleCSS">
-              <label class="fontCSS" :for="$route.name + '2'">Select： </label>
-            </b-col>
-            <b-col class="">
-              <b-form-select
-                :id="$route.name + '2'"
-                :class="
-                  backgroundColor == 'dark' ? 'text-light bg-secondary' : ''
-                "
-                v-model="sampleSelect.value"
-                :options="sampleSelect.options"
-              ></b-form-select>
-            </b-col>
-          </b-row>
-        </b-col>
-        <!-- date sample -->
-        <b-col md="6">
-          <b-row>
-            <b-col xl="3" md="4" class="col-2 titleCSS">
-              <label class="fontCSS" :for="$route.name + '3'">Date： </label>
-            </b-col>
-            <b-col class="">
-              <b-form-datepicker
-                :id="$route.name + '3'"
-                v-model="dateValue"
-                :dark="backgroundColor == 'dark'"
-                :class="
-                  backgroundColor == 'dark' ? 'text-light bg-secondary' : ''
-                "
-                class="mb-2 datetype"
-              ></b-form-datepicker>
-            </b-col>
-          </b-row>
-        </b-col>
-        <!-- check sample -->
-        <b-col md="6">
-          <b-row>
-            <b-col xl="3" md="4" class="col-2 titleCSS">
-              <label class="fontCSS">Checkbox： </label>
-            </b-col>
-            <b-col class="d-flex flex-wrap mt-2">
-              <div
-                v-for="(item, index) in sampleCheckbox.options"
-                :key="index"
-                class="d-flex mr-1"
-              >
-                <b-form-checkbox
-                  v-model="sampleCheckbox.value"
-                  :value="item.value"
-                  :id="sampleCheckbox.name + item.value"
+      <b-card
+        class="mb-3"
+        :class="backgroundColor == 'dark' ? 'bg-secondary' : 'bg-light'"
+      >
+        <!-- chart -->
+        <b-row class="justify-content-center">
+          <b-button class="mr-3" @click="getChartBarData()" variant="info"
+            >ChartBar</b-button
+          >
+          <b-button @click="getChartPieData()" variant="success"
+            >ChartPie</b-button
+          >
+        </b-row>
+        <b-row class="mb-3">
+          <b-col>
+            <ChartBar :chartBarData="chartBarData" />
+          </b-col>
+          <b-col>
+            <ChartPie
+              :chartPieData="chartPieData"
+            />
+          </b-col>
+        </b-row>
+        <b-row class="mb-3">
+          <!-- input sample -->
+          <b-col md="6">
+            <b-row>
+              <b-col xl="3" md="4" class="col-2 titleCSS">
+                <label class="fontCSS" :for="$route.name + '1'">Input： </label>
+              </b-col>
+              <b-col>
+                <b-form-input
+                  :id="$route.name + '1'"
+                  :name="$route.name + '1'"
+                  placeholder="Enter the value"
+                  v-model="inputValue"
+                  :class="
+                    backgroundColor == 'dark' ? 'text-light bg-secondary' : ''
+                  "
+                  trim
+                />
+              </b-col>
+            </b-row>
+          </b-col>
+          <!-- select sample -->
+          <b-col md="6">
+            <b-row>
+              <b-col xl="3" md="4" class="col-2 titleCSS">
+                <label class="fontCSS" :for="$route.name + '2'"
+                  >Select：
+                </label>
+              </b-col>
+              <b-col class="">
+                <b-form-select
+                  :id="$route.name + '2'"
+                  :class="
+                    backgroundColor == 'dark' ? 'text-light bg-secondary' : ''
+                  "
+                  v-model="sampleSelect.value"
+                  :options="sampleSelect.options"
+                ></b-form-select>
+              </b-col>
+            </b-row>
+          </b-col>
+          <!-- date sample -->
+          <b-col md="6">
+            <b-row>
+              <b-col xl="3" md="4" class="col-2 titleCSS">
+                <label class="fontCSS" :for="$route.name + '3'">Date： </label>
+              </b-col>
+              <b-col class="">
+                <b-form-datepicker
+                  :id="$route.name + '3'"
+                  v-model="dateValue"
+                  :dark="backgroundColor == 'dark'"
+                  :class="
+                    backgroundColor == 'dark' ? 'text-light bg-secondary' : ''
+                  "
+                  class="mb-2 datetype"
+                ></b-form-datepicker>
+              </b-col>
+            </b-row>
+          </b-col>
+          <!-- check sample -->
+          <b-col md="6">
+            <b-row>
+              <b-col xl="3" md="4" class="col-2 titleCSS">
+                <label class="fontCSS">Checkbox： </label>
+              </b-col>
+              <b-col class="d-flex flex-wrap mt-2">
+                <div
+                  v-for="(item, index) in sampleCheckbox.options"
+                  :key="index"
+                  class="d-flex mr-1"
                 >
-                </b-form-checkbox>
-                <label
-                  class="fontColor"
-                  :for="sampleCheckbox.name + item.value"
+                  <b-form-checkbox
+                    v-model="sampleCheckbox.value"
+                    :value="item.value"
+                    :id="sampleCheckbox.name + item.value"
+                  >
+                  </b-form-checkbox>
+                  <label
+                    class="fontColor"
+                    :for="sampleCheckbox.name + item.value"
+                  >
+                    {{ item.text }}</label
+                  >
+                </div>
+              </b-col>
+            </b-row>
+          </b-col>
+          <!-- radio sample -->
+          <b-col md="6">
+            <b-row>
+              <b-col xl="3" md="4" class="col-2 titleCSS">
+                <label class="fontCSS">Radio： </label>
+              </b-col>
+              <b-col class="d-flex flex-wrap mt-2">
+                <div
+                  v-for="(item, index) in this.sampleRadio.options"
+                  :key="index"
+                  class="d-flex mr-1"
                 >
-                  {{ item.text }}</label
-                >
-              </div>
-            </b-col>
-          </b-row>
-        </b-col>
-        <!-- radio sample -->
-        <b-col md="6">
-          <b-row>
-            <b-col xl="3" md="4" class="col-2 titleCSS">
-              <label class="fontCSS">Radio： </label>
-            </b-col>
-            <b-col class="d-flex flex-wrap mt-2">
-              <div
-                v-for="(item, index) in this.sampleRadio.options"
-                :key="index"
-                class="d-flex mr-1"
-              >
-                <b-form-radio
-                  v-model="sampleRadio.value"
-                  :value="item.value"
-                  :id="sampleRadio.name + item.value"
-                >
-                </b-form-radio>
-                <label class="fontColor" :for="sampleRadio.name + item.value">
-                  {{ item.text }}</label
-                >
-              </div>
-            </b-col>
-          </b-row>
-        </b-col>
+                  <b-form-radio
+                    v-model="sampleRadio.value"
+                    :value="item.value"
+                    :id="sampleRadio.name + item.value"
+                  >
+                  </b-form-radio>
+                  <label class="fontColor" :for="sampleRadio.name + item.value">
+                    {{ item.text }}</label
+                  >
+                </div>
+              </b-col>
+            </b-row>
+          </b-col>
 
-        <b-col class="col-12">
-          <b-button @click="createAction()" variant="primary"
-            >showModal</b-button
-          >
-          <b-button @click="getTableData(1)" variant="outline-primary"
-            >search</b-button
-          >
-          <b-button disabled variant="outline-secondary">sample</b-button>
-        </b-col>
-      </b-row>
+          <b-col class="col-12">
+            <b-button @click="createAction()" variant="primary"
+              >showModal</b-button
+            >
+            <b-button @click="getTableData(1)" variant="outline-primary"
+              >search</b-button
+            >
+            <b-button disabled variant="outline-secondary">sample</b-button>
+          </b-col>
+        </b-row>
+      </b-card>
 
       <BaseTable
         :fields="table.fields"
@@ -188,12 +214,18 @@
 <script>
 import { mapState } from "vuex";
 import BaseTable from "./../components/BaseTable";
+import ChartBar from "./../components/ChartBar";
+import ChartPie from "./../components/ChartPie";
 export default {
   components: {
     BaseTable,
+    ChartPie,
+    ChartBar,
   },
   data() {
     return {
+      //chart test
+      styles: {},
       //input
       inputValue: "",
       //select
@@ -261,6 +293,46 @@ export default {
       modalData: {
         modalType: "create",
         companyName: "",
+      },
+      //bar-chart
+      chartBarData: {
+        labels: [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ],
+        datasets: [
+          {
+            label: "Data One",
+            backgroundColor: "#f87979",
+            data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11],
+          },
+          {
+            label: "Data One",
+            backgroundColor: "red",
+            data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11],
+          },
+        ],
+      },
+
+      //bar-chart
+      chartPieData: {
+        labels: ["VueJs", "EmberJs", "ReactJs", "AngularJs"],
+        datasets: [
+          {
+            backgroundColor: ["#41B883", "#E46651", "#00D8FF", "#DD1B16"],
+            data: [40, 20, 80, 10],
+          },
+        ],
       },
     };
   },
@@ -923,7 +995,6 @@ export default {
     setSearchData() {
       this.table.items = [...this.searchData];
     },
-
     createAction() {
       this.modalData.modalType = "create";
       this.$bvModal.show(this.$route.name);
@@ -951,6 +1022,63 @@ export default {
     clickPage(page) {
       this.table.currentPage = page;
       this.getTableData();
+    },
+    getChartBarData() {
+      //call api get data
+      let labels = [
+        "一月",
+        "二月",
+        "三月",
+        "四月",
+        "五月",
+        "六月",
+        "七月",
+        "八月",
+        "九月",
+        "十月",
+        "十一月",
+        "十二月",
+      ];
+      let datasets = [
+        {
+          label: "預定排程",
+          backgroundColor: "blue",
+          data: [800, 400, 600, 390, 100, 400, 390, 800, 400, 200, 120, 110],
+        },
+        {
+          label: "完成排程",
+          backgroundColor: "red",
+          data: [400, 200, 120, 390, 90, 300, 260, 680, 340, 120, 72, 31],
+        },
+      ];
+
+      let object = {
+        labels,
+        datasets,
+      };
+      this.chartBarData = object;
+    },
+    getChartPieData() {
+      console.log("1");
+      //call api get data
+      let labels = ["project1", "project2", "project3", "project4", "project5"];
+      let datasets = [
+        {
+          backgroundColor: [
+            "#41B883",
+            "#E46651",
+            "#00D8FF",
+            "#DD1B16",
+            "yellow",
+          ],
+          data: [2, 4, 5, 6, 10],
+        },
+      ];
+      let object = {
+        labels,
+        datasets,
+      };
+      this.chartPieData = object;
     },
   },
   computed: {
