@@ -104,7 +104,6 @@ export default {
     return {
       sidebarList: [],
       isSidebar: false,
-      // windowWidth: window.innerWidth,
     };
   },
   methods: {

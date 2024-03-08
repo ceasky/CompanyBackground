@@ -3,7 +3,7 @@
     <div v-show="isAuthenticated">
       <NavBar />
     </div>
-    <div class="d-flex">
+    <div class="d-flex" style="position: relative">
       <SideBar
         v-show="isAuthenticated"
         :class="backgroundColor == 'light' ? 'sidebarLight' : 'sidebarDark'"
@@ -15,7 +15,12 @@
         :class="
           backgroundColor == 'light' ? 'contentTypeLight' : 'contentTypeDark'
         "
-        style="width: 100%; padding-top: 5rem; height: 100vh"
+        style="
+          width: 100%;
+          padding-top: 5rem;
+          min-height: 100vh;
+          padding-bottom: 3rem;
+        "
         :style="'padding-left :' + sidebarType + 'rem'"
       />
     </div>
@@ -49,6 +54,6 @@ export default {
   position: absolute;
   top: 0%;
   left: 0;
-  height: 100vh;
+  height: 100%;
 }
 </style>

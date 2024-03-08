@@ -117,7 +117,9 @@
           <b-button @click="createAction()" variant="primary"
             >showModal</b-button
           >
-          <b-button disabled variant="outline-primary">sample</b-button>
+          <b-button @click="getTableData(1)" variant="outline-primary"
+            >search</b-button
+          >
           <b-button disabled variant="outline-secondary">sample</b-button>
         </b-col>
       </b-row>
@@ -125,6 +127,7 @@
       <BaseTable
         :fields="table.fields"
         :items="table.items"
+        :currentPage="table.currentPage"
         :totalItems="table.totalItems"
         :perPage="table.perPage"
         :editAction="editAction"
@@ -231,9 +234,11 @@ export default {
         ],
       },
       // table
+      searchData: null,
       table: {
-        perPage: 5,
-        totalItems: 50,
+        currentPage: 1,
+        perPage: 10,
+        totalItems: 0,
         fields: [
           {
             key: "COL0",
@@ -250,69 +255,7 @@ export default {
           { key: "COL15", label: "text_btn", type: "text_btn" },
           { key: "COL16", label: "icon_btn", type: "icon_btn" },
         ],
-        items: [
-          {
-            COL10: [
-              { text: "item1", variant: "secondary" },
-              { text: "item2", variant: "danger" },
-              { text: "item3", variant: "warning" },
-              { text: "item1", variant: "secondary" },
-              { text: "item2", variant: "danger" },
-              { text: "item3", variant: "warning" },
-            ],
-            COL12: [
-              { icon: "pencil-square", variant: "secondary" },
-              { icon: "stop", variant: "warning" },
-              { icon: "trash", variant: "danger" },
-            ],
-            COL0: "edit,delete",
-            COL1: "id1",
-            COL2: "title1",
-            COL3: "data1",
-            COL4: "2022-01-01",
-            COL5: "proccess",
-
-            COL15: [
-              { text: "item1", variant: "secondary" },
-              { text: "item2", variant: "danger" },
-              { text: "item3", variant: "warning" },
-            ],
-            COL16: [
-              { icon: "pencil-square", variant: "secondary" },
-              { icon: "stop", variant: "warning" },
-              { icon: "trash", variant: "danger" },
-            ],
-          },
-          {
-            COL10: [
-              { text: "data1", variant: "secondary" },
-              { text: "data2", variant: "danger" },
-              { text: "data3", variant: "warning" },
-            ],
-            COL12: [
-              { icon: "pencil-square", variant: "primary" },
-              { icon: "stop", variant: "danger" },
-              { icon: "trash", variant: "info" },
-            ],
-            COL0: "edit,delete",
-            COL1: "id1",
-            COL2: "title1",
-            COL3: "data1",
-            COL4: "2022-01-01",
-            COL5: "new",
-
-            COL15: [
-              { text: "item1", variant: "secondary" },
-              { text: "item2", variant: "danger" },
-              { text: "item3", variant: "warning" },
-            ],
-            COL16: [
-              { icon: "pencil-square", variant: "secondary" },
-              { icon: "stop", variant: "warning" },
-              { icon: "trash", variant: "danger" },
-            ],
-          },
-        ],
+        items: [],
       },
       //modal
       modalData: {
@@ -322,6 +265,665 @@ export default {
     };
   },
   methods: {
+    getTableData(type) {
+      if (type) {
+        this.table.currentPage = type;
+      }
+      console.log("call api", this.table.currentPage);
+      let data = [
+        {
+          COL10: [
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+          ],
+          COL12: [
+            { icon: "pencil-square", variant: "secondary" },
+            { icon: "stop", variant: "warning" },
+            { icon: "trash", variant: "danger" },
+          ],
+          COL0: "edit,delete",
+          COL1: "id1",
+          COL2: "title1",
+          COL3: "data1",
+          COL4: "2022-01-01",
+          COL5: "proccess",
+
+          COL15: [
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+          ],
+          COL16: [
+            { icon: "pencil-square", variant: "secondary" },
+            { icon: "stop", variant: "warning" },
+            { icon: "trash", variant: "danger" },
+          ],
+        },
+        {
+          COL10: [
+            { text: "data1", variant: "secondary" },
+            { text: "data2", variant: "danger" },
+            { text: "data3", variant: "warning" },
+          ],
+          COL12: [
+            { icon: "pencil-square", variant: "primary" },
+            { icon: "stop", variant: "danger" },
+            { icon: "trash", variant: "info" },
+          ],
+          COL0: "edit,delete",
+          COL1: "id2",
+          COL2: "title1",
+          COL3: "data1",
+          COL4: "2022-01-01",
+          COL5: "new",
+
+          COL15: [
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+          ],
+          COL16: [
+            { icon: "pencil-square", variant: "secondary" },
+            { icon: "stop", variant: "warning" },
+            { icon: "trash", variant: "danger" },
+          ],
+        },
+        {
+          COL10: [
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+          ],
+          COL12: [
+            { icon: "pencil-square", variant: "secondary" },
+            { icon: "stop", variant: "warning" },
+            { icon: "trash", variant: "danger" },
+          ],
+          COL0: "edit,delete",
+          COL1: "id3",
+          COL2: "title1",
+          COL3: "data1",
+          COL4: "2022-01-01",
+          COL5: "proccess",
+
+          COL15: [
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+          ],
+          COL16: [
+            { icon: "pencil-square", variant: "secondary" },
+            { icon: "stop", variant: "warning" },
+            { icon: "trash", variant: "danger" },
+          ],
+        },
+        {
+          COL10: [
+            { text: "data1", variant: "secondary" },
+            { text: "data2", variant: "danger" },
+            { text: "data3", variant: "warning" },
+          ],
+          COL12: [
+            { icon: "pencil-square", variant: "primary" },
+            { icon: "stop", variant: "danger" },
+            { icon: "trash", variant: "info" },
+          ],
+          COL0: "edit,delete",
+          COL1: "id4",
+          COL2: "title1",
+          COL3: "data1",
+          COL4: "2022-01-01",
+          COL5: "new",
+
+          COL15: [
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+          ],
+          COL16: [
+            { icon: "pencil-square", variant: "secondary" },
+            { icon: "stop", variant: "warning" },
+            { icon: "trash", variant: "danger" },
+          ],
+        },
+        {
+          COL10: [
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+          ],
+          COL12: [
+            { icon: "pencil-square", variant: "secondary" },
+            { icon: "stop", variant: "warning" },
+            { icon: "trash", variant: "danger" },
+          ],
+          COL0: "edit,delete",
+          COL1: "id5",
+          COL2: "title1",
+          COL3: "data1",
+          COL4: "2022-01-01",
+          COL5: "proccess",
+
+          COL15: [
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+          ],
+          COL16: [
+            { icon: "pencil-square", variant: "secondary" },
+            { icon: "stop", variant: "warning" },
+            { icon: "trash", variant: "danger" },
+          ],
+        },
+        {
+          COL10: [
+            { text: "data1", variant: "secondary" },
+            { text: "data2", variant: "danger" },
+            { text: "data3", variant: "warning" },
+          ],
+          COL12: [
+            { icon: "pencil-square", variant: "primary" },
+            { icon: "stop", variant: "danger" },
+            { icon: "trash", variant: "info" },
+          ],
+          COL0: "edit,delete",
+          COL1: "id6",
+          COL2: "title1",
+          COL3: "data1",
+          COL4: "2022-01-01",
+          COL5: "new",
+
+          COL15: [
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+          ],
+          COL16: [
+            { icon: "pencil-square", variant: "secondary" },
+            { icon: "stop", variant: "warning" },
+            { icon: "trash", variant: "danger" },
+          ],
+        },
+        {
+          COL10: [
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+          ],
+          COL12: [
+            { icon: "pencil-square", variant: "secondary" },
+            { icon: "stop", variant: "warning" },
+            { icon: "trash", variant: "danger" },
+          ],
+          COL0: "edit,delete",
+          COL1: "id7",
+          COL2: "title1",
+          COL3: "data1",
+          COL4: "2022-01-01",
+          COL5: "proccess",
+
+          COL15: [
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+          ],
+          COL16: [
+            { icon: "pencil-square", variant: "secondary" },
+            { icon: "stop", variant: "warning" },
+            { icon: "trash", variant: "danger" },
+          ],
+        },
+        {
+          COL10: [
+            { text: "data1", variant: "secondary" },
+            { text: "data2", variant: "danger" },
+            { text: "data3", variant: "warning" },
+          ],
+          COL12: [
+            { icon: "pencil-square", variant: "primary" },
+            { icon: "stop", variant: "danger" },
+            { icon: "trash", variant: "info" },
+          ],
+          COL0: "edit,delete",
+          COL1: "id8",
+          COL2: "title1",
+          COL3: "data1",
+          COL4: "2022-01-01",
+          COL5: "new",
+
+          COL15: [
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+          ],
+          COL16: [
+            { icon: "pencil-square", variant: "secondary" },
+            { icon: "stop", variant: "warning" },
+            { icon: "trash", variant: "danger" },
+          ],
+        },
+        {
+          COL10: [
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+          ],
+          COL12: [
+            { icon: "pencil-square", variant: "secondary" },
+            { icon: "stop", variant: "warning" },
+            { icon: "trash", variant: "danger" },
+          ],
+          COL0: "edit,delete",
+          COL1: "id9",
+          COL2: "title1",
+          COL3: "data1",
+          COL4: "2022-01-01",
+          COL5: "proccess",
+
+          COL15: [
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+          ],
+          COL16: [
+            { icon: "pencil-square", variant: "secondary" },
+            { icon: "stop", variant: "warning" },
+            { icon: "trash", variant: "danger" },
+          ],
+        },
+        {
+          COL10: [
+            { text: "data1", variant: "secondary" },
+            { text: "data2", variant: "danger" },
+            { text: "data3", variant: "warning" },
+          ],
+          COL12: [
+            { icon: "pencil-square", variant: "primary" },
+            { icon: "stop", variant: "danger" },
+            { icon: "trash", variant: "info" },
+          ],
+          COL0: "edit,delete",
+          COL1: "id10",
+          COL2: "title1",
+          COL3: "data1",
+          COL4: "2022-01-01",
+          COL5: "new",
+
+          COL15: [
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+          ],
+          COL16: [
+            { icon: "pencil-square", variant: "secondary" },
+            { icon: "stop", variant: "warning" },
+            { icon: "trash", variant: "danger" },
+          ],
+        },
+        {
+          COL10: [
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+          ],
+          COL12: [
+            { icon: "pencil-square", variant: "secondary" },
+            { icon: "stop", variant: "warning" },
+            { icon: "trash", variant: "danger" },
+          ],
+          COL0: "edit,delete",
+          COL1: "id11",
+          COL2: "title1",
+          COL3: "data1",
+          COL4: "2022-01-01",
+          COL5: "proccess",
+
+          COL15: [
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+          ],
+          COL16: [
+            { icon: "pencil-square", variant: "secondary" },
+            { icon: "stop", variant: "warning" },
+            { icon: "trash", variant: "danger" },
+          ],
+        },
+        {
+          COL10: [
+            { text: "data1", variant: "secondary" },
+            { text: "data2", variant: "danger" },
+            { text: "data3", variant: "warning" },
+          ],
+          COL12: [
+            { icon: "pencil-square", variant: "primary" },
+            { icon: "stop", variant: "danger" },
+            { icon: "trash", variant: "info" },
+          ],
+          COL0: "edit,delete",
+          COL1: "id12",
+          COL2: "title1",
+          COL3: "data1",
+          COL4: "2022-01-01",
+          COL5: "new",
+
+          COL15: [
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+          ],
+          COL16: [
+            { icon: "pencil-square", variant: "secondary" },
+            { icon: "stop", variant: "warning" },
+            { icon: "trash", variant: "danger" },
+          ],
+        },
+        {
+          COL10: [
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+          ],
+          COL12: [
+            { icon: "pencil-square", variant: "secondary" },
+            { icon: "stop", variant: "warning" },
+            { icon: "trash", variant: "danger" },
+          ],
+          COL0: "edit,delete",
+          COL1: "id13",
+          COL2: "title1",
+          COL3: "data1",
+          COL4: "2022-01-01",
+          COL5: "proccess",
+
+          COL15: [
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+          ],
+          COL16: [
+            { icon: "pencil-square", variant: "secondary" },
+            { icon: "stop", variant: "warning" },
+            { icon: "trash", variant: "danger" },
+          ],
+        },
+        {
+          COL10: [
+            { text: "data1", variant: "secondary" },
+            { text: "data2", variant: "danger" },
+            { text: "data3", variant: "warning" },
+          ],
+          COL12: [
+            { icon: "pencil-square", variant: "primary" },
+            { icon: "stop", variant: "danger" },
+            { icon: "trash", variant: "info" },
+          ],
+          COL0: "edit,delete",
+          COL1: "id14",
+          COL2: "title1",
+          COL3: "data1",
+          COL4: "2022-01-01",
+          COL5: "new",
+
+          COL15: [
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+          ],
+          COL16: [
+            { icon: "pencil-square", variant: "secondary" },
+            { icon: "stop", variant: "warning" },
+            { icon: "trash", variant: "danger" },
+          ],
+        },
+        {
+          COL10: [
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+          ],
+          COL12: [
+            { icon: "pencil-square", variant: "secondary" },
+            { icon: "stop", variant: "warning" },
+            { icon: "trash", variant: "danger" },
+          ],
+          COL0: "edit,delete",
+          COL1: "id15",
+          COL2: "title1",
+          COL3: "data1",
+          COL4: "2022-01-01",
+          COL5: "proccess",
+
+          COL15: [
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+          ],
+          COL16: [
+            { icon: "pencil-square", variant: "secondary" },
+            { icon: "stop", variant: "warning" },
+            { icon: "trash", variant: "danger" },
+          ],
+        },
+        {
+          COL10: [
+            { text: "data1", variant: "secondary" },
+            { text: "data2", variant: "danger" },
+            { text: "data3", variant: "warning" },
+          ],
+          COL12: [
+            { icon: "pencil-square", variant: "primary" },
+            { icon: "stop", variant: "danger" },
+            { icon: "trash", variant: "info" },
+          ],
+          COL0: "edit,delete",
+          COL1: "id16",
+          COL2: "title1",
+          COL3: "data1",
+          COL4: "2022-01-01",
+          COL5: "new",
+
+          COL15: [
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+          ],
+          COL16: [
+            { icon: "pencil-square", variant: "secondary" },
+            { icon: "stop", variant: "warning" },
+            { icon: "trash", variant: "danger" },
+          ],
+        },
+        {
+          COL10: [
+            { text: "data1", variant: "secondary" },
+            { text: "data2", variant: "danger" },
+            { text: "data3", variant: "warning" },
+          ],
+          COL12: [
+            { icon: "pencil-square", variant: "primary" },
+            { icon: "stop", variant: "danger" },
+            { icon: "trash", variant: "info" },
+          ],
+          COL0: "edit,delete",
+          COL1: "id17",
+          COL2: "title1",
+          COL3: "data1",
+          COL4: "2022-01-01",
+          COL5: "new",
+
+          COL15: [
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+          ],
+          COL16: [
+            { icon: "pencil-square", variant: "secondary" },
+            { icon: "stop", variant: "warning" },
+            { icon: "trash", variant: "danger" },
+          ],
+        },
+        {
+          COL10: [
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+          ],
+          COL12: [
+            { icon: "pencil-square", variant: "secondary" },
+            { icon: "stop", variant: "warning" },
+            { icon: "trash", variant: "danger" },
+          ],
+          COL0: "edit,delete",
+          COL1: "id18",
+          COL2: "title1",
+          COL3: "data1",
+          COL4: "2022-01-01",
+          COL5: "proccess",
+
+          COL15: [
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+          ],
+          COL16: [
+            { icon: "pencil-square", variant: "secondary" },
+            { icon: "stop", variant: "warning" },
+            { icon: "trash", variant: "danger" },
+          ],
+        },
+        {
+          COL10: [
+            { text: "data1", variant: "secondary" },
+            { text: "data2", variant: "danger" },
+            { text: "data3", variant: "warning" },
+          ],
+          COL12: [
+            { icon: "pencil-square", variant: "primary" },
+            { icon: "stop", variant: "danger" },
+            { icon: "trash", variant: "info" },
+          ],
+          COL0: "edit,delete",
+          COL1: "id19",
+          COL2: "title1",
+          COL3: "data1",
+          COL4: "2022-01-01",
+          COL5: "new",
+
+          COL15: [
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+          ],
+          COL16: [
+            { icon: "pencil-square", variant: "secondary" },
+            { icon: "stop", variant: "warning" },
+            { icon: "trash", variant: "danger" },
+          ],
+        },
+        {
+          COL10: [
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+          ],
+          COL12: [
+            { icon: "pencil-square", variant: "secondary" },
+            { icon: "stop", variant: "warning" },
+            { icon: "trash", variant: "danger" },
+          ],
+          COL0: "edit,delete",
+          COL1: "id20",
+          COL2: "title1",
+          COL3: "data1",
+          COL4: "2022-01-01",
+          COL5: "proccess",
+
+          COL15: [
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+          ],
+          COL16: [
+            { icon: "pencil-square", variant: "secondary" },
+            { icon: "stop", variant: "warning" },
+            { icon: "trash", variant: "danger" },
+          ],
+        },
+        {
+          COL10: [
+            { text: "data1", variant: "secondary" },
+            { text: "data2", variant: "danger" },
+            { text: "data3", variant: "warning" },
+          ],
+          COL12: [
+            { icon: "pencil-square", variant: "primary" },
+            { icon: "stop", variant: "danger" },
+            { icon: "trash", variant: "info" },
+          ],
+          COL0: "edit,delete",
+          COL1: "id21",
+          COL2: "title1",
+          COL3: "data1",
+          COL4: "2022-01-01",
+          COL5: "new",
+
+          COL15: [
+            { text: "item1", variant: "secondary" },
+            { text: "item2", variant: "danger" },
+            { text: "item3", variant: "warning" },
+          ],
+          COL16: [
+            { icon: "pencil-square", variant: "secondary" },
+            { icon: "stop", variant: "warning" },
+            { icon: "trash", variant: "danger" },
+          ],
+        },
+      ];
+      this.table.totalItems = data.length;
+
+      let array = data.slice(
+        (this.table.currentPage - 1) * this.table.perPage,
+        this.table.currentPage * this.table.perPage
+      );
+      this.searchData = array;
+      this.setSearchData();
+    },
+    setSearchData() {
+      this.table.items = [...this.searchData];
+    },
+
     createAction() {
       this.modalData.modalType = "create";
       this.$bvModal.show(this.$route.name);
@@ -347,7 +949,8 @@ export default {
       console.log("itemsIndex", itemsIndex);
     },
     clickPage(page) {
-      console.log("Page", page);
+      this.table.currentPage = page;
+      this.getTableData();
     },
   },
   computed: {

@@ -4,7 +4,7 @@
     <b-card :class="backgroundColor == 'dark' ? 'bg-secondary' : 'bg-light'">
       <b-table
         responsive="true"
-        sticky-header="true"
+        sticky-header="50rem"
         head-variant="light"
         style="margin: 0"
         :fields="fields"
@@ -84,11 +84,12 @@
 
       <div class="mt-3 d-flex justify-content-end">
         <b-pagination
-          v-model="currentPage"
+          v-model="nowPage"
           :total-rows="totalItems"
           :per-page="perPage"
           first-number
           last-number
+          @change="clickPagination"
         ></b-pagination>
       </div>
     </b-card>
@@ -101,7 +102,7 @@ import { mapState } from "vuex";
 export default {
   data() {
     return {
-      currentPage: 1,
+      nowPage: 1,
     };
   },
   props: {
@@ -119,6 +120,10 @@ export default {
     perPage: {
       type: Number,
     },
+    currentPage: {
+      type: Number,
+    },
+
     //icon_btn Function
     icon_btnFunction: {
       type: Function,
@@ -144,13 +149,19 @@ export default {
       default: null,
     },
   },
-  methods: {},
+  methods: {
+    clickPagination() {
+      setTimeout(() => {
+        this.clickPage(this.nowPage);
+      }, 100);
+    },
+  },
   computed: {
     ...mapState(["backgroundColor"]),
   },
   watch: {
     currentPage() {
-      this.clickPage(this.currentPage);
+      this.nowPage = this.currentPage;
     },
   },
 };
