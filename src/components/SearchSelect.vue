@@ -9,7 +9,7 @@
       @blur="outfocus(0)"
       @keyup.enter="$event.target.blur()"
       autocomplete="off"
-      :disabled="this.showli.length == 0"
+      :disabled="this.showli.length == 0 || !isabled"
       :class="backgroundColor == 'dark' ? 'text-light bg-secondary' : ''"
     />
     <ul
@@ -40,7 +40,11 @@ export default {
     },
     placeholder: {
       type: String,
-      default:"enter the keywords"
+      default: "enter the keywords",
+    },
+    isabled: {
+      type: Boolean,
+      default: true,
     },
   },
   data() {
@@ -108,11 +112,11 @@ ul {
   max-height: 200px;
   border-radius: 5px;
 }
-.darkBox{
+.darkBox {
   background: #343a40;
-  color:white
+  color: white;
 }
-.lightNBox{
+.lightNBox {
   background: white;
 }
 ul,
