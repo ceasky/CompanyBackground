@@ -2,7 +2,7 @@
   <div class="wrapper">
     <b-form-input
       id="input-lg"
-      placeholder="enter the keywords"
+      :placeholder="placeholder"
       type="text"
       v-model="searchinputdata"
       @focus="outfocus(1)"
@@ -37,6 +37,10 @@ export default {
     },
     searchinput: {
       type: String,
+    },
+    placeholder: {
+      type: String,
+      default:"enter the keywords"
     },
   },
   data() {
