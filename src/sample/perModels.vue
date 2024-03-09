@@ -6,25 +6,22 @@
         :class="backgroundColor == 'dark' ? 'bg-secondary' : 'bg-light'"
       >
         <!-- chart -->
-        <b-row class="justify-content-center">
-          <b-button class="mr-3" @click="getChartBarData()" variant="info"
-            >ChartBar</b-button
-          >
-          <b-button @click="getChartPieData()" variant="success"
-            >ChartPie</b-button
-          >
-        </b-row>
         <b-row class="mb-3">
-          <b-col>
-            <ChartBar :chartBarData="chartBarData" />
+          <!-- searchSelect sample -->
+          <b-col md="6">
+            <b-row>
+              <b-col xl="3" md="4" class="col-2 titleCSS">
+                <label class="fontCSS">searchSelect： </label>
+              </b-col>
+              <b-col>
+                <SearchSelect
+                  :searchinput.sync="searchSelect.keyWords"
+                  :allchoose="searchSelect.allList"
+                  @linkage="searchSelectFunction()"
+                />
+              </b-col>
+            </b-row>
           </b-col>
-          <b-col>
-            <ChartPie
-              :chartPieData="chartPieData"
-            />
-          </b-col>
-        </b-row>
-        <b-row class="mb-3">
           <!-- input sample -->
           <b-col md="6">
             <b-row>
@@ -148,6 +145,22 @@
             <b-button disabled variant="outline-secondary">sample</b-button>
           </b-col>
         </b-row>
+        <b-row class="justify-content-center">
+          <b-button class="mr-3" @click="getChartBarData()" variant="info"
+            >ChartBar</b-button
+          >
+          <b-button @click="getChartPieData()" variant="success"
+            >ChartPie</b-button
+          >
+        </b-row>
+        <b-row class="mb-3">
+          <b-col>
+            <ChartBar :chartBarData="chartBarData" />
+          </b-col>
+          <b-col>
+            <ChartPie :chartPieData="chartPieData" />
+          </b-col>
+        </b-row>
       </b-card>
 
       <BaseTable
@@ -216,17 +229,30 @@ import { mapState } from "vuex";
 import BaseTable from "./../components/BaseTable";
 import ChartBar from "./../components/ChartBar";
 import ChartPie from "./../components/ChartPie";
-import { Toast } from './../utils/helper'
+import SearchSelect from "./../components/SearchSelect";
+import { Toast } from "./../utils/helper";
 export default {
   components: {
     BaseTable,
     ChartPie,
     ChartBar,
+    SearchSelect,
   },
   data() {
     return {
-      //chart test
-      styles: {},
+      //searchSelect
+      searchSelect: {
+        keyWords: "",
+        allList: [
+          { value: "1", text: "item10" },
+          { value: "2", text: "item11" },
+          { value: "3", text: "item12" },
+          { value: "4", text: "item20" },
+          { value: "5", text: "item21" },
+          { value: "6", text: "item22" ,disabled:true},
+        ],
+        isabled:true
+      },
       //input
       inputValue: "",
       //select
@@ -339,12 +365,11 @@ export default {
   },
   methods: {
     getTableData(type) {
-
       if (type) {
         Toast.fire({
-          icon: 'warning',
-          title: 'type.'
-        })
+          icon: "warning",
+          title: "type.",
+        });
         this.table.currentPage = type;
       }
       console.log("call api", this.table.currentPage);
@@ -1086,6 +1111,9 @@ export default {
       };
       this.chartPieData = object;
     },
+    searchSelectFunction(){
+      console.log("searchSelectFunction")
+    }
   },
   computed: {
     ...mapState(["backgroundColor"]),
