@@ -161,7 +161,9 @@ export default {
   },
   watch: {
     currentPage() {
-      this.nowPage = this.currentPage;
+      setTimeout(() => {
+        this.nowPage = this.currentPage;
+      }, 100);
     },
   },
 };

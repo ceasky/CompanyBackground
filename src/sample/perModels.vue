@@ -216,6 +216,7 @@ import { mapState } from "vuex";
 import BaseTable from "./../components/BaseTable";
 import ChartBar from "./../components/ChartBar";
 import ChartPie from "./../components/ChartPie";
+import { Toast } from './../utils/helper'
 export default {
   components: {
     BaseTable,
@@ -338,7 +339,12 @@ export default {
   },
   methods: {
     getTableData(type) {
+
       if (type) {
+        Toast.fire({
+          icon: 'warning',
+          title: 'type.'
+        })
         this.table.currentPage = type;
       }
       console.log("call api", this.table.currentPage);
