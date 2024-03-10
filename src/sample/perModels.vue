@@ -179,7 +179,11 @@
     <!-- modal -->
     <b-modal
       :id="$route.name"
-      :title="modalData.modalType == 'create' ? 'Create item' : 'Edit item'"
+      :title="
+        modalData.modalType == 'create'
+          ? 'Create department'
+          : 'Edit department'
+      "
       hide-header-close
       :headerBgVariant="backgroundColor"
       :headerTextVariant="backgroundColor == 'dark' ? 'light' : 'dark'"
@@ -190,32 +194,92 @@
       centered
       size="lg"
     >
-      <div>
+      <div
+        :class="backgroundColor == 'dark' ? 'modalTypeDark' : 'modalTypeLight'"
+      >
         <b-row class="align-items-center">
-          <b-col lg="2" class="modalTitleCSS col-3">
-            <label style="font-size: 20px" :for="$route.name + '4'">
-              modalTitle：
-            </label>
+          <b-col class="col-12">
+            <b-row>
+              <b-col lg="2" class="modalTitleCSS col-3">
+                <label style="font-size: 20px" :for="$route.name + 'modal1'">
+                  Company：
+                </label>
+              </b-col>
+              <b-col>
+                <SearchSelect
+                  :searchinput.sync="modalData.companySelect.keyWords"
+                  :allchoose="modalData.companySelect.allList"
+                  :isabled="modalData.modalType == 'create' ? true : false"
+                />
+              </b-col>
+            </b-row>
           </b-col>
-          <b-col>
-            <b-form-input
-              :id="$route.name + '4'"
-              :name="$route.name + '4'"
-              placeholder="Enter the value"
-              v-model="modalData.companyName"
-              type="text"
-              :class="
-                backgroundColor == 'dark' ? 'text-light bg-secondary' : ''
-              "
-              trim
-            />
+          <b-col class="col-12">
+            <b-row>
+              <b-col lg="2" class="modalTitleCSS col-3">
+                <label style="font-size: 20px" :for="$route.name + '4'">
+                  Department：
+                </label>
+              </b-col>
+              <b-col>
+                <b-form-input
+                  :id="$route.name + '4'"
+                  :name="$route.name + '4'"
+                  placeholder="Enter the new department name"
+                  v-model="modalData.departmentName"
+                  type="text"
+                  :class="
+                    backgroundColor == 'dark' ? 'text-light bg-secondary' : ''
+                  "
+                  trim
+                />
+              </b-col>
+            </b-row>
+          </b-col>
+          <b-col class="col-12">
+            <b-row>
+              <b-col lg="2" class="modalTitleCSS col-3">
+                <label style="font-size: 20px" :for="$route.name + '4'">
+                  Project：
+                </label>
+              </b-col>
+              <b-col class="d-flex flex-wrap">
+                <b-list-group>
+                  <b-list-group-item
+                    class="listGroupItemCSS"
+                    style="padding: 0.5rem"
+                    v-for="(item, index) in modalData.permissionCheckbox
+                      .options"
+                    :key="index"
+                  >
+                    <div class="d-flex mr-1">
+                      <b-form-checkbox
+                        v-model="modalData.permissionCheckbox.value"
+                        :value="item.value"
+                        :id="modalData.permissionCheckbox.name + item.value"
+                      >
+                      </b-form-checkbox>
+                      <label
+                        style="margin: 0"
+                        class="fontColor"
+                        :for="modalData.permissionCheckbox.name + item.value"
+                      >
+                        {{ item.text }}</label
+                      >
+                    </div>
+                  </b-list-group-item>
+                </b-list-group>
+              </b-col>
+            </b-row>
           </b-col>
         </b-row>
       </div>
 
       <template #modal-footer="{ cancel }">
         <b-row>
-          <b-button class="mr-2" variant="primary">confirm</b-button>
+          <b-button @click="saveNewCompany()" class="mr-2" variant="primary"
+            >confirm</b-button
+          >
           <b-button variant="outline-secondary" @click="cancel">
             return
           </b-button>
@@ -249,9 +313,9 @@ export default {
           { value: "3", text: "item12" },
           { value: "4", text: "item20" },
           { value: "5", text: "item21" },
-          { value: "6", text: "item22" ,disabled:true},
+          { value: "6", text: "item22", disabled: true },
         ],
-        isabled:true
+        isabled: true,
       },
       //input
       inputValue: "",
@@ -317,9 +381,35 @@ export default {
         items: [],
       },
       //modal
+      //modal
       modalData: {
         modalType: "create",
-        companyName: "",
+        editID: null,
+        companySelect: {
+          keyWords: "",
+          allList: [
+            { value: "1", text: "item10" },
+            { value: "2", text: "item11" },
+            { value: "3", text: "item12" },
+            { value: "4", text: "item20" },
+            { value: "5", text: "item21" },
+            { value: "6", text: "item22", disabled: true },
+          ],
+          isabled: true,
+        },
+        permissionCheckbox: {
+          name: "permissionCheckbox",
+          value: [],
+          options: [
+            { value: "1", text: "projectx1" },
+            { value: "2", text: "projectxxx2" },
+            { value: "3", text: "projectxx3" },
+            { value: "4", text: "projectxxxxx4" },
+            { value: "5", text: "projectxx5" },
+            { value: "6", text: "projectxxxxxxx6" },
+          ],
+        },
+        departmentName: "",
       },
       //bar-chart
       chartBarData: {
@@ -1111,9 +1201,9 @@ export default {
       };
       this.chartPieData = object;
     },
-    searchSelectFunction(){
-      console.log("searchSelectFunction")
-    }
+    searchSelectFunction() {
+      console.log("searchSelectFunction");
+    },
   },
   computed: {
     ...mapState(["backgroundColor"]),

@@ -262,15 +262,23 @@ h1,
 .modal-content .modalTitleCSS {
   display: flex;
   justify-content: end;
-  margin-top: 0.5rem;
   padding: 0;
 }
 
 .modal-content ::placeholder {
   color: #999999;
 }
-.tableFieldPadding {
 
+.modalTypeLight .listGroupItemCSS{
+  background-color: #e9ecef;
+  cursor: pointer;
+  color: #04104a;
+}
+.modalTypeDark .listGroupItemCSS{
+  background-color: #6c757d;
+  border-color: white;
+  cursor: pointer;
+  color: white;
 }
 
 /* RWD */
