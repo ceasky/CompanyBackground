@@ -13,7 +13,7 @@ export default new Vuex.Store({
 
     token: "",
     isAuthenticated: false,
-    sidebarType: "15",
+    sidebarType: "18",
     backgroundColor: localStorage.getItem("backgroundColor")||"light",
     currentRoute: "",
   },
@@ -29,10 +29,10 @@ export default new Vuex.Store({
     },
     setSidebarType(state, type) {
       if (type == "100") {
-        if (state.sidebarType == "15") {
+        if (state.sidebarType == "18") {
           state.sidebarType = "5";
         } else {
-          state.sidebarType = "15";
+          state.sidebarType = "18";
         }
       } else {
         state.sidebarType = type;

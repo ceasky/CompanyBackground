@@ -8,34 +8,49 @@
     >
       <div
         :class="
-          item.title == currentRoute && sidebarType == '15' ? 'choosePage' : ''
+          item.title == currentRoute && sidebarType == '18' ? 'choosePage' : ''
         "
         @click="renderURL(item.route, sidebarType)"
         v-b-toggle="'collapse' + index"
         style="text-align: left; padding-left: 2rem; height: 3rem"
-        class="d-flex align-items-center"
+        class="d-flex align-items-center justify-content-between"
       >
-        <i
-          class="fa-solid mr-2"
-          :class="checkItemFontColor(item.title, item.icon)"
-          style="font-size: 1.2rem; width: 1.7rem"
-        ></i>
-        <i
-          :class="checkItemFontColor(item.title)"
-          v-show="sidebarType == '15'"
-          >{{ item.title }}</i
-        >
+        <div>
+          <i
+            class="fa-solid mr-2"
+            :class="checkItemFontColor(item.title, item.icon)"
+            style="font-size: 1.2rem; width: 1.7rem"
+          ></i>
+          <i
+            :class="checkItemFontColor(item.title)"
+            v-show="sidebarType == '18'"
+            >{{ item.title }}</i
+          >
+        </div>
+        <div class="mr-2" v-show="item.children && sidebarType == '18'">
+          <b-icon
+            :class="checkItemFontColor(item.title, item.icon)"
+            class="sidebarIconColse"
+            icon="chevron-right"
+          ></b-icon>
+          <b-icon
+            :class="checkItemFontColor(item.title, item.icon)"
+            class="sidebarIconOpen"
+            icon="chevron-down"
+          ></b-icon>
+        </div>
       </div>
 
       <b-collapse
-        v-if="item.children && sidebarType == '15'"
+        v-if="item.children && sidebarType == '18'"
         :id="'collapse' + index"
-        style="width: 100%"
+        style="width: 100%; text-align: start"
       >
         <b-list-group>
           <b-list-group-item
             v-for="(data, index) in item.children"
             :key="index"
+            style="padding-left: 4.5rem"
             @click="renderURL(data.route)"
             :class="checkItemCss(data.title)"
             >{{ data.title }}</b-list-group-item
@@ -51,7 +66,7 @@
         :bg-variant="backgroundColor"
         :text-variant="backgroundColor == 'dark' ? 'light' : 'dark'"
         v-model="isSidebar"
-        width="15rem"
+        width="20rem"
         no-header
         shadow
         backdrop
@@ -68,21 +83,39 @@
               @click="renderURL(item.route)"
               v-b-toggle="'collapseC' + index"
               style="text-align: left; padding-left: 2rem; height: 3rem"
-              class="d-flex align-items-center"
+              class="d-flex align-items-center justify-content-between"
             >
-              <i
-                class="fa-solid mr-2"
-                :class="checkItemFontColor(item.title, item.icon)"
-                style="font-size: 1.2rem; width: 1.7rem"
-              ></i>
-              <i :class="checkItemFontColor(item.title)">{{ item.title }}</i>
+              <div>
+                <i
+                  class="fa-solid mr-2"
+                  :class="checkItemFontColor(item.title, item.icon)"
+                  style="font-size: 1.2rem; width: 1.7rem"
+                ></i>
+                <i :class="checkItemFontColor(item.title)">{{ item.title }}</i>
+              </div>
+              <div class="mr-2" v-show="item.children">
+                <b-icon
+                  :class="checkItemFontColor(item.title, item.icon)"
+                  class="sidebarIconColse"
+                  icon="chevron-right"
+                ></b-icon>
+                <b-icon
+                  :class="checkItemFontColor(item.title, item.icon)"
+                  class="sidebarIconOpen"
+                  icon="chevron-down"
+                ></b-icon>
+              </div>
             </div>
 
-            <b-collapse :id="'collapseC' + index" style="width: 100%">
+            <b-collapse
+              :id="'collapseC' + index"
+              style="width: 100%; text-align: start"
+            >
               <b-list-group>
                 <b-list-group-item
                   v-for="(data, index) in item.children"
                   :key="index"
+                  style="padding-left: 4.5rem"
                   @click="renderURL(data.route)"
                   :class="checkItemCss(data.title)"
                   >{{ data.title }}</b-list-group-item
@@ -116,7 +149,7 @@ export default {
       this.$router.push({ name: route });
     },
     showSidebar() {
-      if (this.sidebarType == "15") return;
+      if (this.sidebarType == "18") return;
       this.isSidebar = !this.isSidebar;
     },
     checkItemCss(route) {
@@ -132,7 +165,15 @@ export default {
     },
     checkItemFontColor(route, icon) {
       if (route == this.currentRoute) {
-        return "iDark " + icon;
+        if (this.sidebarType == "18") {
+          return "iDark " + icon;
+        } else {
+          if (this.backgroundColor == "dark") {
+            return "iDark " + icon;
+          } else {
+            return "iLight " + icon;
+          }
+        }
       } else {
         if (this.backgroundColor == "dark") {
           return "iDark " + icon;
@@ -178,5 +219,18 @@ export default {
 .iDark {
   font-size: 20px;
   color: white;
+}
+
+.not-collapsed .sidebarIconColse {
+  display: none;
+}
+.collapsed .sidebarIconColse {
+  display: flex;
+}
+.not-collapsed .sidebarIconOpen {
+  display: flex;
+}
+.collapsed .sidebarIconOpen {
+  display: none;
 }
 </style>

@@ -128,7 +128,7 @@ export default {
       if (e) {
         this.$store.commit("setSidebarType", "5");
       } else {
-        this.$store.commit("setSidebarType", "15");
+        this.$store.commit("setSidebarType", "18");
       }
     },
   },
@@ -144,7 +144,7 @@ export default {
     if (this.windowWidth < 992) {
       this.$store.commit("setSidebarType", "5");
     } else {
-      this.$store.commit("setSidebarType", "15");
+      this.$store.commit("setSidebarType", "18");
     }
   },
 };
