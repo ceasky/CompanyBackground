@@ -77,6 +77,7 @@
                     backgroundColor == 'dark' ? 'text-light bg-secondary' : ''
                   "
                   class="mb-2 datetype"
+                  locale="en"
                 ></b-form-datepicker>
               </b-col>
             </b-row>
@@ -290,6 +291,7 @@
 </template>
 <script>
 import { mapState } from "vuex";
+import moment from "moment";
 import BaseTable from "./../components/BaseTable";
 import ChartBar from "./../components/ChartBar";
 import ChartPie from "./../components/ChartPie";
@@ -368,19 +370,13 @@ export default {
             label: "default_btn",
             type: "default_btn",
           },
-          { key: "COL1", label: "ID" },
-          { key: "COL2", label: "Title" },
-          { key: "COL3", label: "Data" },
-          { key: "COL4", label: "Date" },
-          { key: "COL5", label: "Status" },
+          { key: "COL1", label: "default" },
+          { key: "COL2", label: "style_Cstm", type: "style_Cstm" },
           { key: "COL10", label: "text_btn", type: "text_btn" },
           { key: "COL12", label: "icon_btn", type: "icon_btn" },
-          { key: "COL15", label: "text_btn", type: "text_btn" },
-          { key: "COL16", label: "icon_btn", type: "icon_btn" },
         ],
         items: [],
       },
-      //modal
       //modal
       modalData: {
         modalType: "create",
@@ -462,7 +458,7 @@ export default {
         });
         this.table.currentPage = type;
       }
-      console.log("call api", this.table.currentPage);
+
       let data = [
         {
           COL10: [
@@ -480,21 +476,10 @@ export default {
           ],
           COL0: "edit,delete",
           COL1: "id1",
-          COL2: "title1",
-          COL3: "data1",
-          COL4: "2022-01-01",
-          COL5: "proccess",
-
-          COL15: [
-            { text: "item1", variant: "secondary" },
-            { text: "item2", variant: "danger" },
-            { text: "item3", variant: "warning" },
-          ],
-          COL16: [
-            { icon: "pencil-square", variant: "secondary" },
-            { icon: "stop", variant: "warning" },
-            { icon: "trash", variant: "danger" },
-          ],
+          COL2: {
+            text: "datatext",
+            style: "color:#dc3545 ; border:2px solid red",
+          },
         },
         {
           COL10: [
@@ -509,21 +494,12 @@ export default {
           ],
           COL0: "edit,delete",
           COL1: "id2",
-          COL2: "title1",
-          COL3: "data1",
-          COL4: "2022-01-01",
-          COL5: "new",
+          COL2: {
+            text: "datatext",
+            style: "color:#dc3545 ; border:2px solid red",
+          },
 
-          COL15: [
-            { text: "item1", variant: "secondary" },
-            { text: "item2", variant: "danger" },
-            { text: "item3", variant: "warning" },
-          ],
-          COL16: [
-            { icon: "pencil-square", variant: "secondary" },
-            { icon: "stop", variant: "warning" },
-            { icon: "trash", variant: "danger" },
-          ],
+          COL5: "new",
         },
         {
           COL10: [
@@ -541,21 +517,10 @@ export default {
           ],
           COL0: "edit,delete",
           COL1: "id3",
-          COL2: "title1",
-          COL3: "data1",
-          COL4: "2022-01-01",
-          COL5: "proccess",
-
-          COL15: [
-            { text: "item1", variant: "secondary" },
-            { text: "item2", variant: "danger" },
-            { text: "item3", variant: "warning" },
-          ],
-          COL16: [
-            { icon: "pencil-square", variant: "secondary" },
-            { icon: "stop", variant: "warning" },
-            { icon: "trash", variant: "danger" },
-          ],
+          COL2: {
+            text: "datatext",
+            style: "color:#dc3545 ; border:2px solid red",
+          },
         },
         {
           COL10: [
@@ -570,21 +535,12 @@ export default {
           ],
           COL0: "edit,delete",
           COL1: "id4",
-          COL2: "title1",
-          COL3: "data1",
-          COL4: "2022-01-01",
-          COL5: "new",
+          COL2: {
+            text: "datatext",
+            style: "color:#dc3545 ; border:2px solid red",
+          },
 
-          COL15: [
-            { text: "item1", variant: "secondary" },
-            { text: "item2", variant: "danger" },
-            { text: "item3", variant: "warning" },
-          ],
-          COL16: [
-            { icon: "pencil-square", variant: "secondary" },
-            { icon: "stop", variant: "warning" },
-            { icon: "trash", variant: "danger" },
-          ],
+          COL5: "new",
         },
         {
           COL10: [
@@ -602,21 +558,10 @@ export default {
           ],
           COL0: "edit,delete",
           COL1: "id5",
-          COL2: "title1",
-          COL3: "data1",
-          COL4: "2022-01-01",
-          COL5: "proccess",
-
-          COL15: [
-            { text: "item1", variant: "secondary" },
-            { text: "item2", variant: "danger" },
-            { text: "item3", variant: "warning" },
-          ],
-          COL16: [
-            { icon: "pencil-square", variant: "secondary" },
-            { icon: "stop", variant: "warning" },
-            { icon: "trash", variant: "danger" },
-          ],
+          COL2: {
+            text: "datatext",
+            style: "color:#dc3545 ; border:2px solid red",
+          },
         },
         {
           COL10: [
@@ -631,21 +576,12 @@ export default {
           ],
           COL0: "edit,delete",
           COL1: "id6",
-          COL2: "title1",
-          COL3: "data1",
-          COL4: "2022-01-01",
-          COL5: "new",
+          COL2: {
+            text: "datatext",
+            style: "color:#dc3545 ; border:2px solid red",
+          },
 
-          COL15: [
-            { text: "item1", variant: "secondary" },
-            { text: "item2", variant: "danger" },
-            { text: "item3", variant: "warning" },
-          ],
-          COL16: [
-            { icon: "pencil-square", variant: "secondary" },
-            { icon: "stop", variant: "warning" },
-            { icon: "trash", variant: "danger" },
-          ],
+          COL5: "new",
         },
         {
           COL10: [
@@ -663,21 +599,10 @@ export default {
           ],
           COL0: "edit,delete",
           COL1: "id7",
-          COL2: "title1",
-          COL3: "data1",
-          COL4: "2022-01-01",
-          COL5: "proccess",
-
-          COL15: [
-            { text: "item1", variant: "secondary" },
-            { text: "item2", variant: "danger" },
-            { text: "item3", variant: "warning" },
-          ],
-          COL16: [
-            { icon: "pencil-square", variant: "secondary" },
-            { icon: "stop", variant: "warning" },
-            { icon: "trash", variant: "danger" },
-          ],
+          COL2: {
+            text: "datatext",
+            style: "color:#dc3545 ; border:2px solid red",
+          },
         },
         {
           COL10: [
@@ -692,21 +617,12 @@ export default {
           ],
           COL0: "edit,delete",
           COL1: "id8",
-          COL2: "title1",
-          COL3: "data1",
-          COL4: "2022-01-01",
-          COL5: "new",
+          COL2: {
+            text: "datatext",
+            style: "color:#dc3545 ; border:2px solid red",
+          },
 
-          COL15: [
-            { text: "item1", variant: "secondary" },
-            { text: "item2", variant: "danger" },
-            { text: "item3", variant: "warning" },
-          ],
-          COL16: [
-            { icon: "pencil-square", variant: "secondary" },
-            { icon: "stop", variant: "warning" },
-            { icon: "trash", variant: "danger" },
-          ],
+          COL5: "new",
         },
         {
           COL10: [
@@ -724,21 +640,10 @@ export default {
           ],
           COL0: "edit,delete",
           COL1: "id9",
-          COL2: "title1",
-          COL3: "data1",
-          COL4: "2022-01-01",
-          COL5: "proccess",
-
-          COL15: [
-            { text: "item1", variant: "secondary" },
-            { text: "item2", variant: "danger" },
-            { text: "item3", variant: "warning" },
-          ],
-          COL16: [
-            { icon: "pencil-square", variant: "secondary" },
-            { icon: "stop", variant: "warning" },
-            { icon: "trash", variant: "danger" },
-          ],
+          COL2: {
+            text: "datatext",
+            style: "color:#dc3545 ; border:2px solid red",
+          },
         },
         {
           COL10: [
@@ -753,21 +658,12 @@ export default {
           ],
           COL0: "edit,delete",
           COL1: "id10",
-          COL2: "title1",
-          COL3: "data1",
-          COL4: "2022-01-01",
-          COL5: "new",
+          COL2: {
+            text: "datatext",
+            style: "color:#dc3545 ; border:2px solid red",
+          },
 
-          COL15: [
-            { text: "item1", variant: "secondary" },
-            { text: "item2", variant: "danger" },
-            { text: "item3", variant: "warning" },
-          ],
-          COL16: [
-            { icon: "pencil-square", variant: "secondary" },
-            { icon: "stop", variant: "warning" },
-            { icon: "trash", variant: "danger" },
-          ],
+          COL5: "new",
         },
         {
           COL10: [
@@ -785,21 +681,10 @@ export default {
           ],
           COL0: "edit,delete",
           COL1: "id11",
-          COL2: "title1",
-          COL3: "data1",
-          COL4: "2022-01-01",
-          COL5: "proccess",
-
-          COL15: [
-            { text: "item1", variant: "secondary" },
-            { text: "item2", variant: "danger" },
-            { text: "item3", variant: "warning" },
-          ],
-          COL16: [
-            { icon: "pencil-square", variant: "secondary" },
-            { icon: "stop", variant: "warning" },
-            { icon: "trash", variant: "danger" },
-          ],
+          COL2: {
+            text: "datatext",
+            style: "color:#dc3545 ; border:2px solid red",
+          },
         },
         {
           COL10: [
@@ -814,21 +699,12 @@ export default {
           ],
           COL0: "edit,delete",
           COL1: "id12",
-          COL2: "title1",
-          COL3: "data1",
-          COL4: "2022-01-01",
-          COL5: "new",
+          COL2: {
+            text: "datatext",
+            style: "color:#dc3545 ; border:2px solid red",
+          },
 
-          COL15: [
-            { text: "item1", variant: "secondary" },
-            { text: "item2", variant: "danger" },
-            { text: "item3", variant: "warning" },
-          ],
-          COL16: [
-            { icon: "pencil-square", variant: "secondary" },
-            { icon: "stop", variant: "warning" },
-            { icon: "trash", variant: "danger" },
-          ],
+          COL5: "new",
         },
         {
           COL10: [
@@ -846,21 +722,10 @@ export default {
           ],
           COL0: "edit,delete",
           COL1: "id13",
-          COL2: "title1",
-          COL3: "data1",
-          COL4: "2022-01-01",
-          COL5: "proccess",
-
-          COL15: [
-            { text: "item1", variant: "secondary" },
-            { text: "item2", variant: "danger" },
-            { text: "item3", variant: "warning" },
-          ],
-          COL16: [
-            { icon: "pencil-square", variant: "secondary" },
-            { icon: "stop", variant: "warning" },
-            { icon: "trash", variant: "danger" },
-          ],
+          COL2: {
+            text: "datatext",
+            style: "color:#dc3545 ; border:2px solid red",
+          },
         },
         {
           COL10: [
@@ -875,21 +740,12 @@ export default {
           ],
           COL0: "edit,delete",
           COL1: "id14",
-          COL2: "title1",
-          COL3: "data1",
-          COL4: "2022-01-01",
-          COL5: "new",
+          COL2: {
+            text: "datatext",
+            style: "color:#dc3545 ; border:2px solid red",
+          },
 
-          COL15: [
-            { text: "item1", variant: "secondary" },
-            { text: "item2", variant: "danger" },
-            { text: "item3", variant: "warning" },
-          ],
-          COL16: [
-            { icon: "pencil-square", variant: "secondary" },
-            { icon: "stop", variant: "warning" },
-            { icon: "trash", variant: "danger" },
-          ],
+          COL5: "new",
         },
         {
           COL10: [
@@ -907,21 +763,12 @@ export default {
           ],
           COL0: "edit,delete",
           COL1: "id15",
-          COL2: "title1",
-          COL3: "data1",
-          COL4: "2022-01-01",
-          COL5: "proccess",
+          COL2: {
+            text: "datatext",
+            style: "color:#dc3545 ; border:2px solid red",
+          },
 
-          COL15: [
-            { text: "item1", variant: "secondary" },
-            { text: "item2", variant: "danger" },
-            { text: "item3", variant: "warning" },
-          ],
-          COL16: [
-            { icon: "pencil-square", variant: "secondary" },
-            { icon: "stop", variant: "warning" },
-            { icon: "trash", variant: "danger" },
-          ],
+          COL5: "proccess",
         },
         {
           COL10: [
@@ -936,21 +783,12 @@ export default {
           ],
           COL0: "edit,delete",
           COL1: "id16",
-          COL2: "title1",
-          COL3: "data1",
-          COL4: "2022-01-01",
-          COL5: "new",
+          COL2: {
+            text: "datatext",
+            style: "color:#dc3545 ; border:2px solid red",
+          },
 
-          COL15: [
-            { text: "item1", variant: "secondary" },
-            { text: "item2", variant: "danger" },
-            { text: "item3", variant: "warning" },
-          ],
-          COL16: [
-            { icon: "pencil-square", variant: "secondary" },
-            { icon: "stop", variant: "warning" },
-            { icon: "trash", variant: "danger" },
-          ],
+          COL5: "new",
         },
         {
           COL10: [
@@ -965,21 +803,12 @@ export default {
           ],
           COL0: "edit,delete",
           COL1: "id17",
-          COL2: "title1",
-          COL3: "data1",
-          COL4: "2022-01-01",
-          COL5: "new",
+          COL2: {
+            text: "datatext",
+            style: "color:#dc3545 ; border:2px solid red",
+          },
 
-          COL15: [
-            { text: "item1", variant: "secondary" },
-            { text: "item2", variant: "danger" },
-            { text: "item3", variant: "warning" },
-          ],
-          COL16: [
-            { icon: "pencil-square", variant: "secondary" },
-            { icon: "stop", variant: "warning" },
-            { icon: "trash", variant: "danger" },
-          ],
+          COL5: "new",
         },
         {
           COL10: [
@@ -997,21 +826,10 @@ export default {
           ],
           COL0: "edit,delete",
           COL1: "id18",
-          COL2: "title1",
-          COL3: "data1",
-          COL4: "2022-01-01",
-          COL5: "proccess",
-
-          COL15: [
-            { text: "item1", variant: "secondary" },
-            { text: "item2", variant: "danger" },
-            { text: "item3", variant: "warning" },
-          ],
-          COL16: [
-            { icon: "pencil-square", variant: "secondary" },
-            { icon: "stop", variant: "warning" },
-            { icon: "trash", variant: "danger" },
-          ],
+          COL2: {
+            text: "datatext",
+            style: "color:#dc3545 ; border:2px solid red",
+          },
         },
         {
           COL10: [
@@ -1026,21 +844,12 @@ export default {
           ],
           COL0: "edit,delete",
           COL1: "id19",
-          COL2: "title1",
-          COL3: "data1",
-          COL4: "2022-01-01",
-          COL5: "new",
+          COL2: {
+            text: "datatext",
+            style: "color:#dc3545 ; border:2px solid red",
+          },
 
-          COL15: [
-            { text: "item1", variant: "secondary" },
-            { text: "item2", variant: "danger" },
-            { text: "item3", variant: "warning" },
-          ],
-          COL16: [
-            { icon: "pencil-square", variant: "secondary" },
-            { icon: "stop", variant: "warning" },
-            { icon: "trash", variant: "danger" },
-          ],
+          COL5: "new",
         },
         {
           COL10: [
@@ -1058,21 +867,10 @@ export default {
           ],
           COL0: "edit,delete",
           COL1: "id20",
-          COL2: "title1",
-          COL3: "data1",
-          COL4: "2022-01-01",
-          COL5: "proccess",
-
-          COL15: [
-            { text: "item1", variant: "secondary" },
-            { text: "item2", variant: "danger" },
-            { text: "item3", variant: "warning" },
-          ],
-          COL16: [
-            { icon: "pencil-square", variant: "secondary" },
-            { icon: "stop", variant: "warning" },
-            { icon: "trash", variant: "danger" },
-          ],
+          COL2: {
+            text: "datatext",
+            style: "color:#dc3545 ; border:2px solid red",
+          },
         },
         {
           COL10: [
@@ -1087,21 +885,12 @@ export default {
           ],
           COL0: "edit,delete",
           COL1: "id21",
-          COL2: "title1",
-          COL3: "data1",
-          COL4: "2022-01-01",
-          COL5: "new",
+          COL2: {
+            text: "datatext",
+            style: "color:#dc3545 ; border:2px solid red",
+          },
 
-          COL15: [
-            { text: "item1", variant: "secondary" },
-            { text: "item2", variant: "danger" },
-            { text: "item3", variant: "warning" },
-          ],
-          COL16: [
-            { icon: "pencil-square", variant: "secondary" },
-            { icon: "stop", variant: "warning" },
-            { icon: "trash", variant: "danger" },
-          ],
+          COL5: "new",
         },
       ];
       this.table.totalItems = data.length;
@@ -1208,7 +997,25 @@ export default {
   computed: {
     ...mapState(["backgroundColor"]),
   },
-  created() {},
+  watch: {
+    //test
+    "companySelect.keyWords": function (newValue) {
+      if (newValue) {
+        let item = this.APIcompany.find(
+          (item) => item.name == this.companySelect.keyWords
+        );
+        if (item) {
+          this.searchSelectFunction();
+        } else return;
+      } else {
+        this.departmentSelect.keyWords = "";
+        this.departmentSelect.allList.splice(0);
+      }
+    },
+  },
+  created() {
+    this.dateValue = moment().format("YYYY-MM-DD");
+  },
 };
 </script>
 <style scoped>

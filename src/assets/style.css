@@ -182,10 +182,10 @@ h1,
   background-color: #04104a;
   border-color: #04104a;
 }
-.contentTypeLight .b-calendar-grid-body .btn-outline-primary:hover {
+/* .contentTypeLight .b-calendar-grid-body .btn-outline-primary:hover {
   background-color: #04104a;
   color: #ffffff;
-}
+} */
 
 /* Dark */
 .sidebarDark {
@@ -228,7 +228,7 @@ h1,
   background-color: #343a40;
   color: #ffffff;
 }
-.contentTypeDark .b-calendar-grid .text-dark {
+.contentTypeDark .b-calendar-grid-body .text-dark {
   color: #ffffff !important;
 }
 .contentTypeDark .b-calendar-grid-body .btn-outline-primary:hover {
@@ -238,9 +238,7 @@ h1,
 .contentTypeDark .b-calendar-grid-body .btn-outline-light:hover {
   color: #04104a !important;
 }
-.contentTypeDark .b-form-datepicker label {
-  color: #ffffff !important;
-}
+
 
 /* radio */
 .custom-control-input:checked ~ .custom-control-label::before {
@@ -250,6 +248,7 @@ h1,
 /* calendar */
 .b-calendar-grid .active {
   background-color: #04104a !important;
+  color: #fff !important;
 }
 .b-calendar-grid .b-calendar-grid-help {
   display: none;
@@ -269,12 +268,12 @@ h1,
   color: #999999;
 }
 
-.modalTypeLight .listGroupItemCSS{
+.modalTypeLight .listGroupItemCSS {
   background-color: #e9ecef;
   cursor: pointer;
   color: #04104a;
 }
-.modalTypeDark .listGroupItemCSS{
+.modalTypeDark .listGroupItemCSS {
   background-color: #6c757d;
   border-color: white;
   cursor: pointer;
