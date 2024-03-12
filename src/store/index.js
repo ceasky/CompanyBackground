@@ -8,6 +8,7 @@ export default new Vuex.Store({
     currentUser: {
       id: -1,
       name: "",
+      company:"CompanyName",
       isAdmin: false,
     },
 

@@ -8,40 +8,80 @@
     "
   >
     <div style="width: 100%" class="d-flex justify-content-between">
-      <div class="d-flex">
-        <button
-          v-show="windowWidth > 992"
-          type="button"
-          class="btn"
-          style="background-color: transparent; border-color: transparent"
-          @click="setSidebarType()"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="d-flex align-items-center">
-          <span
-            :class="
-              backgroundColor == 'dark' ? 'fontColorDark' : 'fontColorLight'
-            "
-            style="font-size: 1.5rem"
-            >公司名稱</span
+      <div class="d-flex align-items-center" style="position: relative">
+        <div class="d-flex">
+          <button
+            type="button"
+            :disabled="windowWidth <= 992"
+            class="btn"
+            style="background-color: transparent; border-color: transparent"
+            @click="setSidebarType()"
           >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="d-flex align-items-center" v-if="sidebarType == '18'">
+            <span
+              :class="
+                backgroundColor == 'dark' ? 'fontColorDark' : 'fontColorLight'
+              "
+              style="font-size: 1.5rem"
+              >{{ currentUser.company }}</span
+            >
+          </div>
         </div>
-        <div class="ml-3 d-flex align-items-center">
-          <span
-            @click="setbackgroundColor()"
-            v-show="backgroundColor == 'dark'"
-            class="material-symbols-outlined fontColorDark"
-          >
-            light_mode
-          </span>
-          <span
-            @click="setbackgroundColor()"
-            v-show="backgroundColor == 'light'"
-            class="material-symbols-outlined fontColorLight"
-          >
-            dark_mode
-          </span>
+        <div
+          class="d-flex"
+          style="position: absolute; width: 20rem"
+          :style="sidebarType == '18' ? 'left:17rem' : 'left:4rem'"
+        >
+          <div class="d-flex align-items-center mr-2">
+            <span
+              @click="setbackgroundColor()"
+              v-show="backgroundColor == 'dark'"
+              class="material-symbols-outlined fontColorDark"
+              style="cursor: pointer"
+            >
+              light_mode
+            </span>
+            <span
+              @click="setbackgroundColor()"
+              v-show="backgroundColor == 'light'"
+              class="material-symbols-outlined fontColorLight"
+              style="cursor: pointer"
+            >
+              dark_mode
+            </span>
+          </div>
+          <div class="d-flex">
+            <div
+              :class="
+                backgroundColor == 'dark' ? 'fontColorDark' : 'fontColorLight'
+              "
+              style="font-size: 1.6rem"
+            >
+              {{ currentRoute }}
+            </div>
+            <div class="d-flex align-items-end ml-3 mb-1">
+              <i
+               
+                class="fontColorGroup"
+                >{{ pageGroup }}</i
+              >
+              <i
+                :class="
+                  backgroundColor == 'dark' ? 'fontColorDark' : 'fontColorLight'
+                "
+                style="margin-right: 0.5rem; margin-left: 0.5rem"
+                >></i
+              >
+              <i
+                :class="
+                  backgroundColor == 'dark' ? 'fontColorDark' : 'fontColorLight'
+                "
+                >{{ currentRoute }}</i
+              >
+            </div>
+          </div>
         </div>
       </div>
       <div class="d-flex" style="position: relative">
@@ -50,9 +90,9 @@
             :class="
               backgroundColor == 'dark' ? 'fontColorDark' : 'fontColorLight'
             "
-            style="font-size: 1.5rem"
+            style="font-size: 1.5rem; cursor: pointer"
           >
-            {{ currentUser.name || "使用者" }} 您好
+            Hi! {{ currentUser.name || "使用者" }}
           </div>
         </div>
         <div>
@@ -67,7 +107,7 @@
                 backgroundColor == 'dark' ? 'fontColorDark' : 'fontColorLight'
               "
               class="fa-solid fa-user"
-              style="font-size: 20px"
+              style="font-size: 20px; cursor: pointer"
             ></i>
           </button>
         </div>
@@ -88,12 +128,15 @@
 </template>
 <script>
 import { mapState } from "vuex";
+import sidebarContent from "../utils/sidebar.js";
 export default {
   // Vue 會在沒有資料時使用此預設值
   data() {
     return {
       useroption: false,
+      sidebarContent: null,
       windowWidth: window.innerWidth,
+      pageGroup: "",
     };
   },
   methods: {
@@ -104,7 +147,9 @@ export default {
       this.useroption = false;
     },
     setSidebarType() {
-      this.$store.commit("setSidebarType", "100");
+      if (this.windowWidth > 992) {
+        this.$store.commit("setSidebarType", "100");
+      }
     },
     logout() {
       this.$store.commit("revokeAuthentication");
@@ -118,7 +163,12 @@ export default {
     },
   },
   computed: {
-    ...mapState(["currentRoute", "currentUser", "backgroundColor"]),
+    ...mapState([
+      "currentRoute",
+      "currentUser",
+      "backgroundColor",
+      "sidebarType",
+    ]),
     isMobile() {
       return this.windowWidth < 992;
     },
@@ -131,6 +181,21 @@ export default {
         this.$store.commit("setSidebarType", "18");
       }
     },
+    currentRoute() {
+      for (var index in this.sidebarContent) {
+        let data = this.sidebarContent[index];
+        if (data.children) {
+          for (var idx in data.children) {
+            if (data.children[idx].title == this.currentRoute) {
+              this.pageGroup = data.title;
+              return;
+            }
+          }
+        } else {
+          this.pageGroup = this.currentRoute;
+        }
+      }
+    },
   },
   mounted() {
     // 監聽窗口大小的改變
@@ -141,6 +206,7 @@ export default {
     window.removeEventListener("resize", this.handleResize);
   },
   created() {
+    this.sidebarContent = sidebarContent;
     if (this.windowWidth < 992) {
       this.$store.commit("setSidebarType", "5");
     } else {
@@ -177,10 +243,11 @@ li {
 }
 .fontColorLight {
   color: #04104a;
-  cursor: pointer;
 }
 .fontColorDark {
   color: white;
-  cursor: pointer;
+}
+.fontColorGroup{
+  color: #868e96;
 }
 </style>
