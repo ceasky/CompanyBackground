@@ -258,6 +258,9 @@ h1,
 }
 
 /* modal */
+.modal-content  {
+  min-width:600px
+}
 .modal-content .modalTitleCSS {
   display: flex;
   justify-content: end;

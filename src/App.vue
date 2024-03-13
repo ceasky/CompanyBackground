@@ -49,6 +49,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #04104a;
+  min-width: 700px;
 }
 .APPsidebarCSS {
   position: absolute;

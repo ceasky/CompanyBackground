@@ -8,9 +8,9 @@
         <!-- chart -->
         <b-row class="mb-3">
           <!-- searchSelect sample -->
-          <b-col md="6">
+          <b-col lg="6">
             <b-row>
-              <b-col xl="3" md="4" class="col-2 titleCSS">
+              <b-col xl="4" lg="5" md="3" class="col-3 titleCSS">
                 <label class="fontCSS">searchSelect： </label>
               </b-col>
               <b-col>
@@ -23,9 +23,9 @@
             </b-row>
           </b-col>
           <!-- input sample -->
-          <b-col md="6">
+          <b-col lg="6">
             <b-row>
-              <b-col xl="3" md="4" class="col-2 titleCSS">
+              <b-col xl="4" lg="5" md="3" class="col-3 titleCSS">
                 <label class="fontCSS" :for="$route.name + '1'">Input： </label>
               </b-col>
               <b-col>
@@ -43,9 +43,9 @@
             </b-row>
           </b-col>
           <!-- select sample -->
-          <b-col md="6">
+          <b-col lg="6">
             <b-row>
-              <b-col xl="3" md="4" class="col-2 titleCSS">
+              <b-col xl="4" lg="5" md="3" class="col-3 titleCSS">
                 <label class="fontCSS" :for="$route.name + '2'"
                   >Select：
                 </label>
@@ -63,9 +63,9 @@
             </b-row>
           </b-col>
           <!-- date sample -->
-          <b-col md="6">
+          <b-col lg="6">
             <b-row>
-              <b-col xl="3" md="4" class="col-2 titleCSS">
+              <b-col xl="4" lg="5" md="3" class="col-3 titleCSS">
                 <label class="fontCSS" :for="$route.name + '3'">Date： </label>
               </b-col>
               <b-col class="">
@@ -83,9 +83,9 @@
             </b-row>
           </b-col>
           <!-- check sample -->
-          <b-col md="6">
+          <b-col lg="6">
             <b-row>
-              <b-col xl="3" md="4" class="col-2 titleCSS">
+              <b-col xl="4" lg="5" md="3" class="col-3 titleCSS">
                 <label class="fontCSS">Checkbox： </label>
               </b-col>
               <b-col class="d-flex flex-wrap mt-2">
@@ -111,9 +111,9 @@
             </b-row>
           </b-col>
           <!-- radio sample -->
-          <b-col md="6">
+          <b-col lg="6">
             <b-row>
-              <b-col xl="3" md="4" class="col-2 titleCSS">
+              <b-col xl="4" lg="5" md="3" class="col-3 titleCSS">
                 <label class="fontCSS">Radio： </label>
               </b-col>
               <b-col class="d-flex flex-wrap mt-2">
@@ -201,7 +201,7 @@
         <b-row class="align-items-center">
           <b-col class="col-12">
             <b-row>
-              <b-col lg="2" class="modalTitleCSS col-3">
+              <b-col lg="3" class="modalTitleCSS col-4">
                 <label style="font-size: 20px" :for="$route.name + 'modal1'">
                   Company：
                 </label>
@@ -217,7 +217,7 @@
           </b-col>
           <b-col class="col-12">
             <b-row>
-              <b-col lg="2" class="modalTitleCSS col-3">
+              <b-col lg="3" class="modalTitleCSS col-4">
                 <label style="font-size: 20px" :for="$route.name + '4'">
                   Department：
                 </label>
@@ -239,7 +239,7 @@
           </b-col>
           <b-col class="col-12">
             <b-row>
-              <b-col lg="2" class="modalTitleCSS col-3">
+              <b-col lg="3" class="modalTitleCSS col-4">
                 <label style="font-size: 20px" :for="$route.name + '4'">
                   Project：
                 </label>
