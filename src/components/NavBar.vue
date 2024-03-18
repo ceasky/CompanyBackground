@@ -31,7 +31,7 @@
         </div>
         <div
           class="d-flex"
-          style="position: absolute; width: 20rem"
+          style="position: absolute; width: 30rem"
           :style="sidebarType == '18' ? 'left:17rem' : 'left:4rem'"
         >
           <div class="d-flex align-items-center mr-2">
@@ -59,14 +59,10 @@
               "
               style="font-size: 1.6rem"
             >
-              {{ currentRoute }}
+              {{ currentRouteTitle }}
             </div>
             <div class="d-flex align-items-end ml-3 mb-1">
-              <i
-               
-                class="fontColorGroup"
-                >{{ pageGroup }}</i
-              >
+              <i class="fontColorGroup">{{ pageGroup }}</i>
               <i
                 :class="
                   backgroundColor == 'dark' ? 'fontColorDark' : 'fontColorLight'
@@ -78,7 +74,7 @@
                 :class="
                   backgroundColor == 'dark' ? 'fontColorDark' : 'fontColorLight'
                 "
-                >{{ currentRoute }}</i
+                >{{ currentRouteTitle }}</i
               >
             </div>
           </div>
@@ -137,6 +133,7 @@ export default {
       sidebarContent: null,
       windowWidth: window.innerWidth,
       pageGroup: "",
+      currentRouteTitle: "",
     };
   },
   methods: {
@@ -186,13 +183,15 @@ export default {
         let data = this.sidebarContent[index];
         if (data.children) {
           for (var idx in data.children) {
-            if (data.children[idx].title == this.currentRoute) {
+            if (data.children[idx].route == this.currentRoute) {
               this.pageGroup = data.title;
+              this.currentRouteTitle = data.children[idx].title;
               return;
             }
           }
         } else {
-          this.pageGroup = this.currentRoute;
+          this.pageGroup = data.title;
+          this.currentRouteTitle = data.title;
         }
       }
     },
@@ -207,6 +206,7 @@ export default {
   },
   created() {
     this.sidebarContent = sidebarContent;
+    console.log("this.sidebarContent", this.sidebarContent);
     if (this.windowWidth < 992) {
       this.$store.commit("setSidebarType", "5");
     } else {
@@ -247,7 +247,7 @@ li {
 .fontColorDark {
   color: white;
 }
-.fontColorGroup{
+.fontColorGroup {
   color: #868e96;
 }
 </style>

@@ -7,11 +7,10 @@ import SignIn from "../views/SignIn.vue";
 import SignUp from "../views/SignUp.vue";
 import NotFound from "../views/NotFound.vue";
 
-import Group1Page1 from "../views/Group1/Group1Page1.vue";
-import Group1Page2 from "../views/Group1/Group1Page2.vue";
+import DepartmentPage from "../views/UserModule/DepartmentPage.vue";
+import UsersPage from "../views/UserModule/UsersPage.vue";
 import Group2Page1 from "../views/Group2/Group2Page1.vue";
 import Group2Page2 from "../views/Group2/Group2Page2.vue";
-import Group3Page1 from "../views/Group3Page1.vue";
 
 //sample
 import perModels from "../sample/perModels.vue";
@@ -49,19 +48,14 @@ const routes = [
   //group1
   // exact url完全匹配時直接導向component頁面
   {
-    path: "/Group1",
-    exact: true,
-    redirect: "/Group1Page1",
+    path: "/DepartmentPage",
+    name: "DepartmentPage",
+    component: DepartmentPage,
   },
   {
-    path: "/Group1Page1",
-    name: "Group1Page1",
-    component: Group1Page1,
-  },
-  {
-    path: "/Group1Page2",
-    name: "Group1Page2",
-    component: Group1Page2,
+    path: "/UsersPage",
+    name: "UsersPage",
+    component: UsersPage,
   },
   //group2
   {
@@ -73,12 +67,6 @@ const routes = [
     path: "/Group2Page2",
     name: "Group2Page2",
     component: Group2Page2,
-  },
-  //group3
-  {
-    path: "/Group3Page1",
-    name: "Group3Page1",
-    component: Group3Page1,
   },
   //sample
   {

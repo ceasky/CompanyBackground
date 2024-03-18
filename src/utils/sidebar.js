@@ -1,40 +1,102 @@
 export default [
   {
-    title: "Group1",
+    title: "使用者模組",
     icon: "fa-user",
     children: [
       {
-        title: "Group1Page1",
-        route: "Group1Page1",
+        title: "部門管理",
+        route: "DepartmentPage",
       },
       {
-        title: "Group1Page2",
-        route: "Group1Page2",
+        title: "使用者管理",
+        route: "UsersPage",
       },
     ],
   },
   {
-    title: "Group2",
+    title: "公告",
     icon: "fa-folder-open",
     children: [
       {
-        title: "Group2Page1",
+        title: "固定公告",
         route: "Group2Page1",
       },
       {
-        title: "Group2Page2",
+        title: "規章表單",
         route: "Group2Page2",
       },
     ],
   },
   {
-    title: "Group3Page1",
-    route: "Group3Page1",
-    icon: "fa-elementor",
+    title: "專案模組",
+    icon: "fa-folder-open",
+    children: [
+      {
+        title: "專案管理",
+        route: "Group2Page1",
+      },
+      {
+        title: "專案紀錄",
+        route: "Group2Page2",
+      },
+    ],
   },
   {
-    title: "perModels",
-    route: "perModels",
-    icon: "fa-snowflake",
+    title: "工作記錄",
+    icon: "fa-folder-open",
+    children: [
+      {
+        title: "專案分配",
+        route: "Group2Page1",
+      },
+      {
+        title: "每日報工",
+        route: "Group2Page1",
+      },
+      {
+        title: "每週工作細項",
+        route: "Group2Page2",
+      },
+    ],
+  },
+  {
+    title: "教育訓練",
+    icon: "fa-folder-open",
+    children: [
+      {
+        title: "課程管理",
+        route: "Group2Page1",
+      },
+      {
+        title: "課程紀錄",
+        route: "Group2Page2",
+      },
+    ],
+  },
+  {
+    title: "人事出勤",
+    icon: "fa-folder-open",
+    children: [
+      {
+        title: "月出勤紀錄",
+        route: "Group2Page1",
+      },
+      {
+        title: "打卡紀錄",
+        route: "Group2Page2",
+      },
+      {
+        title: "請假紀錄",
+        route: "Group2Page1",
+      },
+      {
+        title: "出差紀錄",
+        route: "Group2Page2",
+      },
+      {
+        title: "加班紀錄",
+        route: "Group2Page1",
+      },
+    ],
   },
 ];
