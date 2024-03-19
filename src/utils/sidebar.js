@@ -61,11 +61,11 @@ export default [
     children: [
       {
         title: "課程管理",
-        route: "Group2Page1",
+        route: "CourseManage",
       },
       {
         title: "課程紀錄",
-        route: "Group2Page2",
+        route: "CourseRecord",
       },
     ],
   },
