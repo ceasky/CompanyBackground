@@ -13,9 +13,11 @@
       >
         <template #cell()="data">
           <!-- text_btn -->
+          <!-- EX:data = { text: "datatext", variant: "danger"}; -->
           <b-row
             class="d-flex justify-content-center"
             v-if="data.field?.type == 'text_btn'"
+            style="padding-left: 0.5rem"
           >
             <div class="d-flex flex-gap">
               <b-button
@@ -31,9 +33,11 @@
             </div>
           </b-row>
           <!-- icon_btn -->
+          <!-- (bootstrap vue icon) EX:data = { icon: "pencil-square", variant: "danger"}; -->
           <b-row
             class="d-flex justify-content-center"
             v-else-if="data.field?.type == 'icon_btn'"
+            style="padding-left: 0.5rem"
           >
             <div class="d-flex flex-gap">
               <b-button
@@ -48,9 +52,11 @@
             </div>
           </b-row>
           <!-- default_btn -->
+          <!-- EX:data = "edit,delete" -->
           <b-row
             class="d-flex justify-content-center"
             v-else-if="data.field?.type == 'default_btn'"
+            style="padding-left: 0.5rem"
           >
             <div class="d-flex flex-gap">
               <b-button
@@ -71,9 +77,20 @@
               </b-button>
             </div>
           </b-row>
+          <!-- style_Cstm -->
+          <!-- EX:data = { text: "datatext", style: "color:#dc3545 ; border:2px solid
+          red" }; -->
+          <b-row
+            style="height: 2.5rem; min-width: 8rem"
+            v-else-if="data.field?.type == 'style_Cstm'"
+            :style="data.value.style"
+            class="d-flex justify-content-center align-items-center text-nowrap"
+          >
+            <div>{{ data.value.text }}</div>
+          </b-row>
           <!-- else -->
           <b-row
-            style="height: 2.5rem"
+            style="height: 2.5rem; min-width: 8rem"
             v-else
             class="d-flex justify-content-center align-items-center text-nowrap"
           >

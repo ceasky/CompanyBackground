@@ -33,11 +33,11 @@ export default [
     children: [
       {
         title: "專案管理",
-        route: "Group2Page1",
+        route: "ProjectManage",
       },
       {
         title: "專案紀錄",
-        route: "Group2Page2",
+        route: "ProjectRecord",
       },
     ],
   },

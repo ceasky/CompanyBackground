@@ -9,6 +9,9 @@ import NotFound from "../views/NotFound.vue";
 
 import DepartmentPage from "../views/UserModule/DepartmentPage.vue";
 import UsersPage from "../views/UserModule/UsersPage.vue";
+import ProjectManage from "../views/ProjectModule/ProjectManage.vue";
+import ProjectRecord from "../views/ProjectModule/ProjectRecord.vue";
+
 import Group2Page1 from "../views/Group2/Group2Page1.vue";
 import Group2Page2 from "../views/Group2/Group2Page2.vue";
 
@@ -45,8 +48,7 @@ const routes = [
     name: "sign-up",
     component: SignUp,
   },
-  //group1
-  // exact url完全匹配時直接導向component頁面
+  //userModule
   {
     path: "/DepartmentPage",
     name: "DepartmentPage",
@@ -56,6 +58,17 @@ const routes = [
     path: "/UsersPage",
     name: "UsersPage",
     component: UsersPage,
+  },
+  //projectModule
+  {
+    path: "/ProjectManage",
+    name: "ProjectManage",
+    component: ProjectManage,
+  },
+  {
+    path: "/ProjectRecord",
+    name: "ProjectRecord",
+    component: ProjectRecord,
   },
   //group2
   {

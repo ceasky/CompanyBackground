@@ -52,7 +52,7 @@
             :key="index"
             style="padding-left: 4.5rem"
             @click="renderURL(data.route)"
-            :class="checkItemCss(data.title)"
+            :class="checkItemCss(data.route)"
             >{{ data.title }}</b-list-group-item
           >
         </b-list-group>
@@ -117,7 +117,7 @@
                   :key="index"
                   style="padding-left: 4.5rem"
                   @click="renderURL(data.route)"
-                  :class="checkItemCss(data.title)"
+                  :class="checkItemCss(data.route)"
                   >{{ data.title }}</b-list-group-item
                 >
               </b-list-group>
