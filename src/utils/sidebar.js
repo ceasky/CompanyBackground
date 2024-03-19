@@ -46,16 +46,12 @@ export default [
     icon: "fa-folder-open",
     children: [
       {
-        title: "專案分配",
-        route: "Group2Page1",
-      },
-      {
         title: "每日報工",
-        route: "Group2Page1",
+        route: "perDayWorkHours",
       },
       {
-        title: "每週工作細項",
-        route: "Group2Page2",
+        title: "報工紀錄",
+        route: "ProjectWorkHours",
       },
     ],
   },

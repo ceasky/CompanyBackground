@@ -60,7 +60,7 @@
       size="lg"
     >
       <div
-        :class="backgroundColor == 'dark' ? 'modalTypeDark' : 'modalTypeLight'"
+        :class="backgroundColor == 'dark' ? 'modalTypeDark' : 'contentTypeDark'"
       >
         <b-row class="align-items-center">
           <b-col class="col-12">

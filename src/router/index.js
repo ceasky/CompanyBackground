@@ -11,6 +11,8 @@ import DepartmentPage from "../views/UserModule/DepartmentPage.vue";
 import UsersPage from "../views/UserModule/UsersPage.vue";
 import ProjectManage from "../views/ProjectModule/ProjectManage.vue";
 import ProjectRecord from "../views/ProjectModule/ProjectRecord.vue";
+import perDayWorkHours from "../views/WorkRecord/perDayWorkHours.vue";
+import ProjectWorkHours from "../views/WorkRecord/ProjectWorkHours.vue";
 
 import Group2Page1 from "../views/Group2/Group2Page1.vue";
 import Group2Page2 from "../views/Group2/Group2Page2.vue";
@@ -69,6 +71,17 @@ const routes = [
     path: "/ProjectRecord",
     name: "ProjectRecord",
     component: ProjectRecord,
+  },
+  //workRecord
+  {
+    path: "/ProjectWorkHours",
+    name: "ProjectWorkHours",
+    component: ProjectWorkHours,
+  },
+  {
+    path: "/perDayWorkHours",
+    name: "perDayWorkHours",
+    component: perDayWorkHours,
   },
   //group2
   {
