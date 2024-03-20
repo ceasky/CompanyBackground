@@ -211,7 +211,7 @@ export default {
           { key: "COL2", label: "日期" },
           { key: "COL3", label: "最早打卡紀錄" },
           { key: "COL4", label: "最晚打卡紀錄" },
-          { key: "COL5", label: "狀態" },
+          { key: "COL5", label: "狀態", type: "style_Cstm" },
         ],
         items: [],
       },
@@ -363,13 +363,25 @@ export default {
       let array = [];
       for (var index in this.searchData) {
         let data = this.searchData[index];
+
+        let statusStyle = "";
+        if (data.status == "正常") {
+          statusStyle = "color:#28a745";
+        } else {
+          statusStyle = "color:#dc3545";
+        }
+        let status = {
+          text: data.status,
+          style: statusStyle,
+        };
+
         array.push({
           COL0: "edit",
           COL1: data.userName,
           COL2: data.workDate,
           COL3: data.earliestRecord,
           COL4: data.latestRecord,
-          COL5: data.status,
+          COL5: status,
           ID: data.id,
         });
       }

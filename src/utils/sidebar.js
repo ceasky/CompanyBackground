@@ -64,10 +64,10 @@ export default [
     title: "人事出勤",
     icon: "fa-folder-open",
     children: [
-      {
-        title: "出勤紀錄",
-        route: "AttendanceRecord",
-      },
+      // {
+      //   title: "出勤紀錄",
+      //   route: "AttendanceRecord",
+      // },
       {
         title: "打卡紀錄",
         route: "CheckinRecord",
@@ -76,10 +76,6 @@ export default [
         title: "請假紀錄",
         route: "LeaveRecord",
       },
-      // {
-      //   title: "出差紀錄",
-      //   route: "Group2Page2",
-      // },
       {
         title: "加班紀錄",
         route: "OvertimeRecord",

@@ -72,7 +72,7 @@
         backdrop
       >
         <div class="px-2 py-2">
-          <h4 class="mt-3">正月科技</h4>
+          <h4 class="mt-3 ml-4" style="text-align: start">JanuaryTC</h4>
           <div
             class="d-flex flex-column"
             v-for="(item, index) in sidebarList"
