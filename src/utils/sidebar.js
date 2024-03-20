@@ -1,5 +1,10 @@
 export default [
   {
+    title: "公告&表單",
+    route: "AnnouncementForm",
+    icon: "fa-layer-group",
+  },
+  {
     title: "使用者模組",
     icon: "fa-user",
     children: [
@@ -10,20 +15,6 @@ export default [
       {
         title: "使用者管理",
         route: "UsersPage",
-      },
-    ],
-  },
-  {
-    title: "公告",
-    icon: "fa-folder-open",
-    children: [
-      {
-        title: "固定公告",
-        route: "Group2Page1",
-      },
-      {
-        title: "規章表單",
-        route: "Group2Page2",
       },
     ],
   },

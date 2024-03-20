@@ -97,7 +97,7 @@
       size="lg"
     >
       <div
-        :class="backgroundColor == 'dark' ? 'modalTypeDark' : 'contentTypeDark'"
+        :class="backgroundColor == 'dark' ? 'modalTypeDark' : 'modalTypeLight'"
       >
         <b-row class="align-items-center">
           <!-- user -->

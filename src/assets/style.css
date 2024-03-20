@@ -278,6 +278,9 @@ h1,
 .modal-content ::placeholder {
   color: #999999;
 }
+.custom-file-label .form-file-text {
+  color: #999999;
+}
 
 .modalTypeLight .listGroupItemCSS {
   background-color: #e9ecef;
@@ -318,6 +321,14 @@ h1,
   cursor: pointer;
   color: white;
 }
+.modalTypeDark .custom-file-label {
+  background-color: #6c757d;
+}
+.modalTypeDark .custom-file-label::after {
+  background-color: #343a40;
+  color: white;
+}
+/* placeholder */
 
 /* RWD */
 .mainContent {

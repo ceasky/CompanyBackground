@@ -8,7 +8,7 @@
     >
       <div
         :class="
-          item.title == currentRoute && sidebarType == '18' ? 'choosePage' : ''
+          item.route == currentRoute && sidebarType == '18' ? 'choosePage' : ''
         "
         @click="renderURL(item.route, sidebarType)"
         v-b-toggle="'collapse' + index"
@@ -18,23 +18,23 @@
         <div>
           <i
             class="fa-solid mr-2"
-            :class="checkItemFontColor(item.title, item.icon)"
+            :class="checkItemFontColor(item.route, item.icon)"
             style="font-size: 1.2rem; width: 1.7rem"
           ></i>
           <i
-            :class="checkItemFontColor(item.title)"
+            :class="checkItemFontColor(item.route)"
             v-show="sidebarType == '18'"
             >{{ item.title }}</i
           >
         </div>
         <div class="mr-2" v-show="item.children && sidebarType == '18'">
           <b-icon
-            :class="checkItemFontColor(item.title, item.icon)"
+            :class="checkItemFontColor(item.route, item.icon)"
             class="sidebarIconColse"
             icon="chevron-right"
           ></b-icon>
           <b-icon
-            :class="checkItemFontColor(item.title, item.icon)"
+            :class="checkItemFontColor(item.route, item.icon)"
             class="sidebarIconOpen"
             icon="chevron-down"
           ></b-icon>
@@ -72,14 +72,14 @@
         backdrop
       >
         <div class="px-2 py-2">
-          <h4 class="mt-3">公司名稱</h4>
+          <h4 class="mt-3">正月科技</h4>
           <div
             class="d-flex flex-column"
             v-for="(item, index) in sidebarList"
             :key="index"
           >
             <div
-              :class="item.title == currentRoute ? 'choosePage' : ''"
+              :class="item.route == currentRoute ? 'choosePage' : ''"
               @click="renderURL(item.route)"
               v-b-toggle="'collapseC' + index"
               style="text-align: left; padding-left: 2rem; height: 3rem"
@@ -88,19 +88,21 @@
               <div>
                 <i
                   class="fa-solid mr-2"
-                  :class="checkItemFontColor(item.title, item.icon)"
+                  :class="checkItemFontColor(item.route, item.icon, true)"
                   style="font-size: 1.2rem; width: 1.7rem"
                 ></i>
-                <i :class="checkItemFontColor(item.title)">{{ item.title }}</i>
+                <i :class="checkItemFontColor(item.route, '', true)">{{
+                  item.title
+                }}</i>
               </div>
               <div class="mr-2" v-show="item.children">
                 <b-icon
-                  :class="checkItemFontColor(item.title, item.icon)"
+                  :class="checkItemFontColor(item.route, item.icon, true)"
                   class="sidebarIconColse"
                   icon="chevron-right"
                 ></b-icon>
                 <b-icon
-                  :class="checkItemFontColor(item.title, item.icon)"
+                  :class="checkItemFontColor(item.route, item.icon, true)"
                   class="sidebarIconOpen"
                   icon="chevron-down"
                 ></b-icon>
@@ -163,7 +165,7 @@ export default {
         }
       }
     },
-    checkItemFontColor(route, icon) {
+    checkItemFontColor(route, icon, sidebar) {
       if (route == this.currentRoute) {
         if (this.sidebarType == "18") {
           return "iDark " + icon;
@@ -171,7 +173,11 @@ export default {
           if (this.backgroundColor == "dark") {
             return "iDark " + icon;
           } else {
-            return "iLight " + icon;
+            if (sidebar) {
+              return "iDark " + icon;
+            } else {
+              return "iLight " + icon;
+            }
           }
         }
       } else {

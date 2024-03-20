@@ -15,6 +15,7 @@ import perDayWorkHours from "../views/WorkRecord/perDayWorkHours.vue";
 import ProjectWorkHours from "../views/WorkRecord/ProjectWorkHours.vue";
 import CourseManage from "../views/CourseModule/CourseManage.vue";
 import CourseRecord from "../views/CourseModule/CourseRecord.vue";
+import AnnouncementForm from "../views/AnnouncementForm.vue";
 
 import Group2Page1 from "../views/Group2/Group2Page1.vue";
 import Group2Page2 from "../views/Group2/Group2Page2.vue";
@@ -95,6 +96,12 @@ const routes = [
     path: "/CourseRecord",
     name: "CourseRecord",
     component: CourseRecord,
+  },
+  //AnnouncementForm
+  {
+    path: "/AnnouncementForm",
+    name: "AnnouncementForm",
+    component: AnnouncementForm,
   },
   //group2
   {
