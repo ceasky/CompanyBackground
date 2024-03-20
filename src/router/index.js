@@ -17,8 +17,10 @@ import CourseManage from "../views/CourseModule/CourseManage.vue";
 import CourseRecord from "../views/CourseModule/CourseRecord.vue";
 import AnnouncementForm from "../views/AnnouncementForm.vue";
 
-import Group2Page1 from "../views/Group2/Group2Page1.vue";
-import Group2Page2 from "../views/Group2/Group2Page2.vue";
+import AttendanceRecord from "../views/PersonnelRecord/AttendanceRecord.vue";
+import CheckinRecord from "../views/PersonnelRecord/CheckinRecord.vue";
+import LeaveRecord from "../views/PersonnelRecord/LeaveRecord.vue";
+import OvertimeRecord from "../views/PersonnelRecord/OvertimeRecord.vue";
 
 //sample
 import perModels from "../sample/perModels.vue";
@@ -103,16 +105,26 @@ const routes = [
     name: "AnnouncementForm",
     component: AnnouncementForm,
   },
-  //group2
+  //PersonnelRecord
   {
-    path: "/Group2Page1",
-    name: "Group2Page1",
-    component: Group2Page1,
+    path: "/AttendanceRecord",
+    name: "AttendanceRecord",
+    component: AttendanceRecord,
   },
   {
-    path: "/Group2Page2",
-    name: "Group2Page2",
-    component: Group2Page2,
+    path: "/CheckinRecord",
+    name: "CheckinRecord",
+    component: CheckinRecord,
+  },
+  {
+    path: "/LeaveRecord",
+    name: "LeaveRecord",
+    component: LeaveRecord,
+  },
+  {
+    path: "/OvertimeRecord",
+    name: "OvertimeRecord",
+    component: OvertimeRecord,
   },
   //sample
   {

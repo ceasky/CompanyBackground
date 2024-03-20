@@ -65,24 +65,24 @@ export default [
     icon: "fa-folder-open",
     children: [
       {
-        title: "月出勤紀錄",
-        route: "Group2Page1",
+        title: "出勤紀錄",
+        route: "AttendanceRecord",
       },
       {
         title: "打卡紀錄",
-        route: "Group2Page2",
+        route: "CheckinRecord",
       },
       {
         title: "請假紀錄",
-        route: "Group2Page1",
+        route: "LeaveRecord",
       },
-      {
-        title: "出差紀錄",
-        route: "Group2Page2",
-      },
+      // {
+      //   title: "出差紀錄",
+      //   route: "Group2Page2",
+      // },
       {
         title: "加班紀錄",
-        route: "Group2Page1",
+        route: "OvertimeRecord",
       },
     ],
   },
