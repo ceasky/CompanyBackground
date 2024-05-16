@@ -181,7 +181,7 @@ export default {
         {
           id: "1",
           user_Name: "user1",
-          project_Name: "安新建經",
+          project_Name: "專案Ｂ",
           workHours: "8",
           workDate: "2024-01-01",
           content: "workRecord1",
@@ -189,7 +189,7 @@ export default {
         {
           id: "2",
           user_Name: "user1",
-          project_Name: "安新建經",
+          project_Name: "專案Ｂ",
           workHours: "8",
           workDate: "2024-01-01",
           content: "workRecord2",
@@ -197,7 +197,7 @@ export default {
         {
           id: "3",
           user_Name: "user1",
-          project_Name: "安新建經",
+          project_Name: "專案Ｂ",
           workHours: "4",
           workDate: "2024-01-01",
           content: "workRecord3",
@@ -205,7 +205,7 @@ export default {
         {
           id: "4",
           user_Name: "user1",
-          project_Name: "安新建經",
+          project_Name: "專案Ｂ",
           workHours: "8",
           workDate: "2024-02-02",
           content: "workRecord4",
@@ -213,7 +213,7 @@ export default {
         {
           id: "5",
           user_Name: "user1",
-          project_Name: "超時代",
+          project_Name: "專案Ａ",
           workHours: "4",
           workDate: "2024-01-01",
           content: "workRecord5",
@@ -254,13 +254,13 @@ export default {
       APIproject: [
         {
           id: 1,
-          name: "安新建經",
-          memo: "安新建經安新建經",
+          name: "專案Ｂ",
+          memo: "專案Ｂ專案Ｂ",
         },
         {
           id: 2,
-          name: "超時代",
-          memo: "超時代超時代",
+          name: "專案Ａ",
+          memo: "專案Ａ專案Ａ",
         },
         {
           id: 3,

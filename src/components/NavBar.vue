@@ -25,7 +25,7 @@
                 backgroundColor == 'dark' ? 'fontColorDark' : 'fontColorLight'
               "
               style="font-size: 1.5rem"
-              >JanuaryTC</span
+              >CompanyName</span
             >
           </div>
         </div>

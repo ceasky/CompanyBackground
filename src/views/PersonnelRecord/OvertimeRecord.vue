@@ -311,13 +311,13 @@ export default {
       APIproject: [
         {
           id: 1,
-          name: "安新建經",
-          memo: "安新建經安新建經",
+          name: "專案Ｂ",
+          memo: "專案Ｂ專案Ｂ",
         },
         {
           id: 2,
-          name: "超時代",
-          memo: "超時代超時代",
+          name: "專案Ａ",
+          memo: "專案Ａ專案Ａ",
         },
         {
           id: 3,
@@ -349,7 +349,7 @@ export default {
           startTime: "08:00",
           endDate: "2024-01-01",
           endTime: "18:00",
-          memo: "安新專案",
+          memo: "專案Ｂ",
           settleType: "1",
           status: "已結算",
         },
